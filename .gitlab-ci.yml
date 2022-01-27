@@ -4,4 +4,4 @@ include:
 variables:
     package_name: "unipi-os-configurator-data"
     build_for_product: "iris"
-    build_for_distribution: "newstable"
+    build_for_distribution: "stable newstable"
