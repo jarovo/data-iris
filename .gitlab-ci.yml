@@ -1,0 +1,7 @@
+include:
+    project: docker/template
+    file: debian-pkg-ng.yaml
+variables:
+    package_name: "unipi-os-configurator-data"
+    build_for_product: "iris"
+    build_for_distribution: "newstable"
