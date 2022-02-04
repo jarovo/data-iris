@@ -1,0 +1,16 @@
+fragment@1 {
+	target = <&ecspi2>;
+	__overlay__ {
+		status = "okay";
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		unipispi11: unipispi@0 {
+			compatible = "unipispi";
+			reg = <0>;
+			status = "okay";
+			spi-max-frequency = <12000000>;
+			modbus-address = <11>;
+		};
+	};
+};

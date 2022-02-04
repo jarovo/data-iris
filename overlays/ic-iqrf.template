@@ -1,0 +1,73 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+ fragment@0 {
+  target = <&i2c3>;
+  __overlay__ {
+      #address-cells = <1>;
+      #size-cells = <0>;
+         gpio_slot1: pca9501@8 {
+          compatible = "nxp,pcf8574";
+          gpio-controller;
+          #gpio-cells = <2>;
+          reg = <0x8>;
+          gpio-line-names = "SLOT1_IQRF_BTN",
+             "SLOT1_IQRF_UART_EN",
+             "SLOT1_IQRF_GW_LEDR",
+             "SLOT1_IQRF_GW_LEDG",
+             "SLOT1_IQRF_SPI_EN",
+             "SLOT1_IQRF_I2C_EN",
+             "SLOT1_IQRF_SPI_PGM_EN",
+             "SLOT1_IQRF_TR_PWR_EN";
+         };
+         ee_slot1@48 {
+             compatible = "24c02";
+             reg = <0x48>;
+             vcc-supply = <&vcc>;
+         };                  
+  };
+ };
+
+ fragment@1 {
+  target = <&ecspi4>;
+  __overlay__ {
+         status = "okay";
+         #address-cells = <1>;
+      #size-cells = <0>;
+
+   spidev_slot1: spi@1 {
+                compatible = "nanopi,spidev";
+                reg = <1>;
+                status = "okay";
+                spi-max-frequency = <12000000>;
+            };
+  };
+ };
+
+ fragment@2 {
+   target = <&uart1>;
+     __overlay__ {
+       status = "okay";
+     };
+ };
+
+ fragment@3 {
+   target-path = "/";
+     __overlay__ {
+        loraleds {
+	        compatible = "gpio-leds";
+	        gw-led@1 {
+	          label = "iqrf-gw-ledr";
+	          gpios = <&gpio_slot1 2 1>;
+	          default-state = "off";
+	        };
+	        gw-led@2 {
+	          label = "iqrf-gw-ledg";
+	          gpios = <&gpio_slot1 3 1>;
+	          default-state = "off";
+	        };
+       };
+     };
+ }; 
+};
