@@ -1,0 +1,58 @@
+/dts-v1/;
+
+
+/plugin/;
+
+/ {
+ fragment@0 {
+  target = <&i2c3>;
+  __overlay__ {
+   #address-cells = <1>;
+   #size-cells = <0>;
+   gpio_slota: pca9501@9 {
+    compatible = "nxp,pcf8574";
+    gpio-controller;
+    #gpio-cells = <2>;
+    reg = <0x9>;
+    gpio-line-names = "SLOTa_LORA_LED1",
+     "SLOTa_LORA_LED2",
+     "","","","","","";
+   };
+
+   ee_slota@49 {
+    compatible = "24c02";
+    reg = <0x49>;
+    vcc-supply = <&vcc>;
+   };
+  };
+ };
+
+ fragment@2 {
+  target = <&uart4>;
+  __overlay__ {
+   pinctrl-names = "default";
+   pinctrl-0 = <&pinctrl_uart4>;
+   status = "okay";
+  };
+ };
+
+ fragment@3 {
+  target-path = "/";
+  __overlay__ {
+   loraleds {
+    compatible = "gpio-leds";
+
+    lora-led@1 {
+     label = "unipi-lora-tx";
+     gpios = <&gpio_slota 0 1>;
+     default-state = "off";
+    };
+    lora-led@2 {
+     label = "unipi-lora-rx";
+     gpios = <&gpio_slota 1 1>;
+     default-state = "off";
+    };
+   };
+  };
+ };
+};
