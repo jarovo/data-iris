@@ -22,7 +22,7 @@
 		target-path = "/";
 		__overlay__ {
 			lte_rfkill {
-				compatible = "unipi,unipi-rfkill";
+				compatible = "unipi,rfkill-quectel912";
 				type = "wwan";
 				algo = "pulse";
 				rfkill-gpio = <&gpio_slot{{slot}} 0 1>;

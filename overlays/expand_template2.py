@@ -1,13 +1,13 @@
 from jinja2 import *
 
-uarts = {
-		"11":{"uart1":1, "tty1":0, "uart2":2, "tty2":1, "i2c":9},
-		"12":{"uart1":1, "tty1":0, "uart2":4, "tty2":3, "i2c":8},
-		"21":{"uart1":1, "tty1":0, "uart2":4, "tty2":3, "i2c":'a'},
-		"22":{"uart1":1, "tty1":0, "uart2":2, "tty2":1, "i2c":'b'},
-		"32" :{"i2c":'c'},
-		"42" :{"i2c":'d'},
-		"52" :{"i2c":'e'},
+slot_params = {
+		"11" :{"i2c":'9', "uart1":1, "tty1":0, "uart2":2, "tty2":1},
+		"12" :{"i2c":'8', "uart1":1, "tty1":0, "uart2":4, "tty2":3},
+		"21" :{"i2c":'a', "uart1":1, "tty1":0, "uart2":4, "tty2":3},
+		"22" :{"i2c":'b', "uart1":1, "tty1":0, "uart2":2, "tty2":1},
+		"32" :{"i2c":'c', },
+		"42" :{"i2c":'d', },
+		"52" :{"i2c":'e', },
 }
 
 
@@ -17,8 +17,8 @@ def gener_dts(template, slots, dts):
 	t = env.get_template(name=template)
 	dtslist = []
 	for slot in slots:
-		uart = uarts[str(slot)]
-		result = t.render(slot=slot, **uart)
+		params = slot_params[str(slot)]
+		result = t.render(slot=slot, **params)
 		with open('dts/%s-slot%s.dts' % (dts,slot), 'w') as f:
 			f.write(result)
 		dtslist.append("%s-slot%s.dts" % (dts,slot))
