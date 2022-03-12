@@ -16,3 +16,4 @@ debian/unipi-os-configurator/
 debian/changelog
 *.substvars
 *.debhelper
+overlays/dts/

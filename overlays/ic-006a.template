@@ -9,11 +9,11 @@
 		__overlay__ {
 			#address-cells = <1>;
 			#size-cells = <0>;
-			gpio_slot{{slot}}: pca9501@b {
+			gpio_slot{{slot}}: pca9501@{{i2c}} {
 				compatible = "nxp,pcf8574";
 				gpio-controller;
 				#gpio-cells = <2>;
-				reg = <0xb>;
+				reg = <0x{{i2c}}>;
 			};
 		};
 	};
