@@ -25,6 +25,18 @@ def gener_dts(template, slots, dts):
 
 	return dtslist
 
+def gener_bb(template, dts):
+	loader=FileSystemLoader(['.'])
+	env = Environment(loader=loader)
+	t = env.get_template(name=template)
+	dtslist = []
+	result = t.render()
+	with open('dts/%s.dts' % (dts), 'w') as f:
+		f.write(result)
+	dtslist.append("%s.dts" % (dts,))
+
+	return dtslist
+
 def gener_makefile(template, dtslist):
 	loader=FileSystemLoader(['.'])
 	env = Environment(loader=loader)
@@ -41,5 +53,9 @@ if __name__ == "__main__":
 	dtslist += gener_dts("ic-006c.template", [11,12,21,22,32,42,52], "ic-006c")
 	#dtslist += gener_dts("unipispi.template", [11,12,21,22,32,42,52], "unipispi")
 	dtslist += gener_dts("ic-0074.template", [12,22,32,42], "ic-0074")
+
+	dtslist += gener_bb("bb-010f.template", "bb-010f")
+	dtslist += gener_bb("bb-020f.template", "bb-020f")
+	dtslist += gener_bb("bb-030f.template", "bb-030f")
 
 	gener_makefile("Makefile.template", dtslist)
