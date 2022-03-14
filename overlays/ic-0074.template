@@ -18,7 +18,7 @@
 		};
 	};
 
-	fragment@5 {
+	fragment@4 {
 		target-path = "/";
 		__overlay__ {
 			lte_rfkill {
@@ -31,4 +31,23 @@
 			};
 		};
 	}; 
+
+	fragment@5 {
+		target-path = "/";
+		__overlay__ {
+			lte-leds {
+				compatible = "gpio-leds";
+				lte-led@1 {
+					label = "unipi-lte-{{slot}}-sig";
+					gpios = <&gpio_slot{{slot}} 2 1>;
+					default-state = "off";
+				};
+				lte-led@2 {
+					label = "unipi-lte-{{slot}}-int";
+					gpios = <&gpio_slot{{slot}} 3 1>;
+					default-state = "off";
+				};
+			};
+		};
+	};
 };
