@@ -1,0 +1,2 @@
+
+SUBSYSTEM=="rtc" ACTION=="add" DEVPATH=="/devices/platform/soc@0/30800000.bus/30a40000.i2c/i2c-2/2-006f/rtc*", SYMLINK+="rtc"

@@ -18,7 +18,7 @@
 		};
 	};
 
-	fragment@4 {
+	fragment@5 {
 		target-path = "/";
 		__overlay__ {
 			lte_rfkill {
@@ -27,8 +27,8 @@
 				algo = "pulse";
 				rfkill-gpio = <&gpio_slot{{slot}} 0 1>;
 				reset-gpio = <&gpio_slot{{slot}} 1 1>;
+				monitor-usb = "usbslot{{slot}}";
 			};
 		};
 	}; 
-
 };
