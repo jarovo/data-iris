@@ -31,7 +31,7 @@
 		};
 	}; 
 
-	fragment@3 {
+	fragment@5 {
 		target-path = "/";
 		__overlay__ {
 			lte-leds {

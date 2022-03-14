@@ -5,6 +5,8 @@ LINUX_DIR_PATH = /lib/modules/$(shell uname -r)/build
 INSTALL = install
 PWD = $(shell pwd)
 WORK = dts
+DEST_DIR = /opt/unipi/os-configurator/data/overlays
+
 
 #DTC_FLAGS_unipi-iris-unispi-slot12 := -@
 templates =  $(wildcard *.template)
@@ -16,8 +18,8 @@ all: $(dtsi) $(templates) $(WORK)/imx8mm-pinfunc.h
 	MAKEFLAGS="$(MAKEFLAGS)" $(MAKE) -C $(LINUX_DIR_PATH) M=$(PWD)/$(WORK)
 
 install: $(wildcard $(WORK)/*.dtb)
-	@mkdir -p $(INSTALL_DIR)/boot
-	$(INSTALL) -m 644 $^ $(INSTALL_DIR)/boot
+	@mkdir -p $(INSTALL_DIR)/${DEST_DIR}
+	$(INSTALL) -m 644 $^ $(INSTALL_DIR)/${DEST_DIR}
 
 $(WORK)/imx8mm-pinfunc.h:
 	@mkdir -p $(WORK)
