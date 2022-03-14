@@ -28,7 +28,6 @@ fi
 case "$1" in
 
   configure)
-    echo "Kokoska pastusi tobolka"
 
     if [ -e /etc/bootcmd.d/Makefile ]; then
         make -C /etc/bootcmd.d force
