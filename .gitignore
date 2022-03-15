@@ -16,4 +16,10 @@ debian/unipi-os-configurator/
 debian/changelog
 *.substvars
 *.debhelper
-overlays/dts/
+overlays/*.dts
+overlays/*.dtb
+overlays/.*
+overlays/Makefile
+overlays/Module.symvers
+overlays/imx8mm-pinfunc.h
+overlays/modules.order

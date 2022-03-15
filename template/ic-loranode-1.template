@@ -30,7 +30,7 @@
 					default-state = "off";
 					//linux,default-trigger = "{{tty2}}-tx";
 				};
-				lora-led@0 {
+				lora-led@1 {
 					label = "unipi-led{{slot}}-rx";
 					gpios = <&gpio_slot{{slot}} 1 1>;
 					default-state = "off";
