@@ -8,30 +8,44 @@ slot:
         tty_a:  ttymxc0
         uart_b: uart2
         tty_b:  ttymxc1
+        spichip: ecspi2
+        spiaddress: 0
     "12": 
         pca_address: 0x8
         uart_a: uart1
         tty_a:  ttymxc0
         uart_b: uart4
         tty_b:  ttymxc3
+        spichip: ecspi4
+        spiaddress: 1
     "21": 
         pca_address: 0xa
         uart_a: uart1
         tty_a:  ttymxc0
         uart_b: uart4
         tty_b:  ttymxc3
+        spichip: ecspi2
+        spiaddress: 1
     "22": 
         pca_address: 0xb
         uart_a: uart1
         tty_a:  ttymxc0
         uart_b: uart2
         tty_b:  ttymxc1
+        spichip: ecspi4
+        spiaddress: 2
     "32": 
         pca_address: 0xc
+        spichip: ecspi4
+        spiaddress: 3
     "42": 
         pca_address: 0xd
+        spichip: ecspi4
+        spiaddress: 4
     "52": 
         pca_address: 0xe
+        spichip: ecspi4
+        spiaddress: 5
 
 
 platform:
@@ -88,4 +102,3 @@ board:
     IC_Do8_1:        111
     IC_CANFD_1:      112
     IC_Eth100_1:     113
-

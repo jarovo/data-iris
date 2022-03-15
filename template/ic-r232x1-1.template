@@ -1,25 +1,16 @@
 /dts-v1/;
-
+{% import 'unipispi.macro' as m  %}
 
 /plugin/;
 
 / {
 	fragment@1 {
-		target = <&i2c3>;
-		__overlay__ {
-			#address-cells = <1>;
-			#size-cells = <0>;
-			gpio_slot{{slot}}: pca9501@{{pca_address}} {
-				compatible = "nxp,pcf8574";
-				gpio-controller;
-				#gpio-cells = <2>;
-				reg = <{{pca_address}}>;
-			};
-		};
+		{{- m.i2c_gpio(slot, pca_address) }}
 	};
 
-
-	#include "{{uart_a}}-485.dtsi"
+	fragment@3 {
+		{{ m.uart(uart_a) }}
+	};
 
 	fragment@4 {
 		target-path = "/";
@@ -27,13 +18,13 @@
 			uartleds {
 				compatible = "gpio-leds";
 				uart-led@0 {
-					label = "unipi-led{{slot}}-rx2";
+					label = "unipi-led{{slot}}-rx";
 					gpios = <&gpio_slot{{slot}} 0 1>;
 					default-state = "off";
 					linux,default-trigger = "{{tty_a}}-rx";
 				};
 				uart-led@1 {
-					label = "unipi-led{{slot}}-tx2";
+					label = "unipi-led{{slot}}-tx";
 					gpios = <&gpio_slot{{slot}} 1 1>;
 					linux,default-trigger = "{{tty_a}}-tx";
 					default-state = "off";
