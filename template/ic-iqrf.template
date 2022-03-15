@@ -7,11 +7,11 @@
   __overlay__ {
       #address-cells = <1>;
       #size-cells = <0>;
-         gpio_slot1: pca9501@8 {
+         gpio_slot1: pca9501@{{pca_address}} {
           compatible = "nxp,pcf8574";
           gpio-controller;
           #gpio-cells = <2>;
-          reg = <0x8>;
+          reg = <{{pca_address}}>;
           gpio-line-names = "SLOT1_IQRF_BTN",
              "SLOT1_IQRF_UART_EN",
              "SLOT1_IQRF_GW_LEDR",

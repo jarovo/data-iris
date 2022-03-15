@@ -1,10 +1,10 @@
 from jinja2 import *
 
 slot_params = {
-		"11" :{"i2c":'9', "uart1":1, "tty1":0, "uart2":2, "tty2":1},
-		"12" :{"i2c":'8', "uart1":1, "tty1":0, "uart2":4, "tty2":3},
-		"21" :{"i2c":'a', "uart1":1, "tty1":0, "uart2":4, "tty2":3},
-		"22" :{"i2c":'b', "uart1":1, "tty1":0, "uart2":2, "tty2":1},
+		"11" :{"i2c":'9', "uart_a":1, "tty1":0, "uart_b":2, "tty2":1},
+		"12" :{"i2c":'8', "uart_a":1, "tty1":0, "uart_b":4, "tty2":3},
+		"21" :{"i2c":'a', "uart_a":1, "tty1":0, "uart_b":4, "tty2":3},
+		"22" :{"i2c":'b', "uart_a":1, "tty1":0, "uart_b":2, "tty2":1},
 		"32" :{"i2c":'c', },
 		"42" :{"i2c":'d', },
 		"52" :{"i2c":'e', },

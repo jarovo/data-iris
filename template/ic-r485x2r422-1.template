@@ -9,18 +9,18 @@
 		__overlay__ {
 			#address-cells = <1>;
 			#size-cells = <0>;
-			gpio_slot{{slot}}: pca9501@{{i2c}} {
+			gpio_slot{{slot}}: pca9501@{{pca_address}} {
 				compatible = "nxp,pcf8574";
 				gpio-controller;
 				#gpio-cells = <2>;
-				reg = <0x{{i2c}}>;
+				reg = <{{pca_address}}>;
 			};
 		};
 	};
 
 
-	#include "uart{{uart1}}-485.dtsi"
-	#include "uart{{uart2}}-485.dtsi"
+	#include "{{uart_a}}-485.dtsi"
+	#include "{{uart_b}}-485.dtsi"
 
 	fragment@4 {
 		target-path = "/";
@@ -31,25 +31,25 @@
 					label = "unipi-led{{slot}}-rx2";
 					gpios = <&gpio_slot{{slot}} 0 1>;
 					default-state = "off";
-					linux,default-trigger = "ttymxc{{tty2}}-rx";
+					linux,default-trigger = "{{tty_b}}-rx";
 				};
 				uart-led@1 {
 					label = "unipi-led{{slot}}-tx2";
 					gpios = <&gpio_slot{{slot}} 1 1>;
-					linux,default-trigger = "ttymxc{{tty2}}-tx";
+					linux,default-trigger = "{{tty_b}}-tx";
 					default-state = "off";
 				};
 				uart-led@2 {
 					label = "unipi-led{{slot}}-rx1";
 					gpios = <&gpio_slot{{slot}} 2 1>;
 					default-state = "off";
-					linux,default-trigger = "ttymxc{{tty1}}-rx";
+					linux,default-trigger = "{{tty_a}}-rx";
 				};
 				uart-led@3 {
 					label = "unipi-led{{slot}}-tx1";
 					gpios = <&gpio_slot{{slot}} 3 1>;
 					default-state = "off";
-					linux,default-trigger = "ttymxc{{tty1}}-tx";
+					linux,default-trigger = "{{tty_a}}-tx";
 				};
 			};
 		};

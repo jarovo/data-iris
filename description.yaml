@@ -1,0 +1,91 @@
+## used by dt-overlay generator
+---
+## usable resources in slot
+slot:
+    "11": 
+        pca_address: 0x9 
+        uart_a: uart1
+        tty_a:  ttymxc0
+        uart_b: uart2
+        tty_b:  ttymxc1
+    "12": 
+        pca_address: 0x8
+        uart_a: uart1
+        tty_a:  ttymxc0
+        uart_b: uart4
+        tty_b:  ttymxc3
+    "21": 
+        pca_address: 0xa
+        uart_a: uart1
+        tty_a:  ttymxc0
+        uart_b: uart4
+        tty_b:  ttymxc3
+    "22": 
+        pca_address: 0xb
+        uart_a: uart1
+        tty_a:  ttymxc0
+        uart_b: uart2
+        tty_b:  ttymxc1
+    "32": 
+        pca_address: 0xc
+    "42": 
+        pca_address: 0xd
+    "52": 
+        pca_address: 0xe
+
+
+platform:
+    IRISx1:
+        template: irisx1.template
+    IRISx2:
+        template: irisx2.template
+    IRISx5:
+        template: irisx5.template
+
+board:
+    IC_DiS4_1:
+        template: ic-dis4-1.template
+        slot: [ 11, 12, 21, 22, 32, 42, 52 ]
+
+    IC_LoRaNode_1:
+        template: ic-loranode-1.template
+        slot: [ 11, 12, 21, 22 ]
+        uart: [ "uart_b" ]
+
+    IC_Light1P_1:
+        template: ic-light1p-1.template
+        slot: [ 11, 12, 21, 22, 32, 42, 52 ]
+
+    IC_R485x2R422_1:
+        template: ic-r485x2r422-1.template
+        slot: [ 11, 12, 21, 22 ]
+        uart: [ "uart_a", "uart_b" ]
+
+    IC_R232x1_1:
+        template: ic-r232x1-1.template
+        slot: [ 11, 12, 21, 22 ]
+        uart: [ "uart_b" ]
+
+    IC_AiUC8_1:
+        template: ic-aiuc8-1.template
+        slot: [ 11, 12, 21, 22, 32, 42, 52 ]
+
+    IC_USBSATA_1:
+        template: id-usbsata-1.template
+        slot: [ 12, 22, 32, 42 ]
+        usb: 1
+
+    ID_LTE_1:
+        template: id-lte-1.template
+        slot: [ 12, 22, 32, 42 ]
+        usb: 1
+
+    IC_AiF2Ao1_1:    104
+    IC_DiS2Do2_1:    105
+    IC_AoU4_1:       107
+    IC_AiRTD8_1:     109
+    IC_DiS8_1:       110
+    IC_Do8_1:        111
+    IC_CANFD_1:      112
+    IC_Eth100_1:     113
+

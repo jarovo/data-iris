@@ -1,0 +1,39 @@
+/dts-v1/;
+
+
+/plugin/;
+
+/ {
+	fragment@1 {
+		target = <&i2c3>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			gpio_slot{{slot}}: pca9501@{{pca_address}} {
+				compatible = "nxp,pcf8574";
+				gpio-controller;
+				#gpio-cells = <2>;
+				reg = <{{pca_address}}>;
+			};
+		};
+	};
+
+	fragment@5 {
+		target-path = "/";
+		__overlay__ {
+			lte-leds {
+				compatible = "gpio-leds";
+				sata-led@1 {
+					label = "unipi-lte-{{slot}}-sig";
+					gpios = <&gpio_slot{{slot}} 2 1>;
+					default-state = "off";
+				};
+				sata-led@2 {
+					label = "unipi-lte-{{slot}}-int";
+					gpios = <&gpio_slot{{slot}} 3 1>;
+					default-state = "off";
+				};
+			};
+		};
+	};
+};

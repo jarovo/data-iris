@@ -4,7 +4,7 @@
 LINUX_DIR_PATH = /lib/modules/$(shell uname -r)/build
 INSTALL = install
 PWD = $(shell pwd)
-WORK = dts
+WORK = overlays
 DEST_DIR = /opt/unipi/os-configurator/data/overlays
 
 
@@ -12,9 +12,10 @@ DEST_DIR = /opt/unipi/os-configurator/data/overlays
 templates =  $(wildcard *.template)
 dtsi = $(wildcard *.dtsi)
 
-all: $(dtsi) $(templates) $(WORK)/imx8mm-pinfunc.h
-	@python3 expand_template2.py
-	@cp *.dtsi $(WORK)
+#all: $(dtsi) $(templates) $(WORK)/imx8mm-pinfunc.h
+all: $(WORK)/imx8mm-pinfunc.h
+	@python3 render-slot.py description.yaml -t template -o $(WORK)
+	@#cp *.dtsi $(WORK)
 	MAKEFLAGS="$(MAKEFLAGS)" $(MAKE) -C $(LINUX_DIR_PATH) M=$(PWD)/$(WORK)
 
 install: $(wildcard $(WORK)/*.dtb)
@@ -27,4 +28,6 @@ $(WORK)/imx8mm-pinfunc.h:
 
 clean:
 	MAKEFLAGS="$(MAKEFLAGS)" $(MAKE) -C $(LINUX_DIR_PATH) M=$(PWD)/$(WORK) clean
-	rm -rf $(WORK)
+	rm -f $(WORK)/*.dts
+	rm -f $(WORK)/Makefile
+	rm $(WORK)/imx8mm-pinfunc.h

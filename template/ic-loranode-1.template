@@ -1,6 +1,5 @@
 /dts-v1/;
 
-
 /plugin/;
 
 / {
@@ -9,16 +8,16 @@
 		__overlay__ {
 			#address-cells = <1>;
 			#size-cells = <0>;
-			gpio_slot{{slot}}: pca9501@{{i2c}} {
+			gpio_slot{{slot}}: pca9501@{{pca_address}} {
 				compatible = "nxp,pcf8574";
 				gpio-controller;
 				#gpio-cells = <2>;
-				reg = <0x{{i2c}}>;
+				reg = <{{pca_address}}>;
 			};
 		};
 	};
 
-	#include "uart{{uart2}}.dtsi"
+	#include "{{uart_b}}.dtsi"
 
 	fragment@4 {
 		target-path = "/";
@@ -29,13 +28,13 @@
 					label = "unipi-led{{slot}}-tx";
 					gpios = <&gpio_slot{{slot}} 0 1>;
 					default-state = "off";
-					//linux,default-trigger = "ttymxc{{tty2}}-tx";
+					//linux,default-trigger = "{{tty2}}-tx";
 				};
 				lora-led@0 {
 					label = "unipi-led{{slot}}-rx";
 					gpios = <&gpio_slot{{slot}} 1 1>;
 					default-state = "off";
-					//linux,default-trigger = "ttymxc{{tty2}}-rx";
+					//linux,default-trigger = "{{tty2}}-rx";
 				};
 			};
 		};
