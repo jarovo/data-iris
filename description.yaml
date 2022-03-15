@@ -48,7 +48,7 @@ slot:
         spiaddress: 5
 
 
-platform:
+product:
     IRISx1:
         template: irisx1.template
     IRISx2:

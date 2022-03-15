@@ -37,11 +37,11 @@ class Exporter:
 def gener_by_desc(description, uniee_data, jinjaenv, exporter):
 
 	data_platform = uniee_data["platform"]["id"]
-	for plat, p_desc in description["platform"].items():
+	for product, p_desc in description["product"].items():
 		try:
-			p_id = data_platform[plat]
+			p_id = data_platform[product]
 		except KeyError as E:
-			raise EDescriptionError('Invalid value for platform name "%s"'% plat) from None
+			raise EDescriptionError('Invalid value for product name "%s"'% product) from None
 
 		if not isinstance(p_desc, dict): continue
 		t = jinjaenv.get_template(name=p_desc["template"])
