@@ -1,7 +1,0 @@
-/dts-v1/;
-
-/plugin/;
-
-/ {
-  #include "spi-slot{{slot}}.dtsi"
-};
