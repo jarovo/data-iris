@@ -1,10 +1,12 @@
 /dts-v1/;
-
+{% import 'unipispi.macro' as m  %}
 
 /plugin/;
 
 / {
-	#include "spi-slot{{slot}}.dtsi"
+	fragment@1 {
+		{{ m.unipispi(slot, spichip, spiaddress) }}
+	};
 
 	fragment@2 {
 		target = <&unipi_plc1>;
