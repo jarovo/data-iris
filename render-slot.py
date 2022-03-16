@@ -12,7 +12,7 @@ def load_yaml_values(filename):
 	import yaml
 
 	with open(filename, 'r') as stream:
-		data = yaml.load(stream)
+		data = yaml.load(stream, Loader=yaml.Loader)
 	return data
 
 class Exporter:
