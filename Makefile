@@ -28,6 +28,6 @@ $(WORK)/imx8mm-pinfunc.h:
 
 clean:
 	@touch $(WORK)/Makefile && MAKEFLAGS="$(MAKEFLAGS)" $(MAKE) -C $(LINUX_DIR_PATH) M=$(PWD)/$(WORK) clean
-	rm -f $(WORK)/*.dts
-	rm -f $(WORK)/Makefile
-	rm $(WORK)/imx8mm-pinfunc.h
+	@rm -f $(WORK)/*.dts
+	@rm -f $(WORK)/Makefile
+	@rm -f $(WORK)/imx8mm-pinfunc.h
