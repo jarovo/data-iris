@@ -3,8 +3,7 @@
 # output every command that modifies files on the build system.
 DH_VERBOSE = 1
 
-LINUX_DIR_PATH = $(shell dpkg -L raspberrypi-kernel-headers | sed -n '/^\/lib\/modules\/.*-###RPI_ARCH###.*\/build$$/p'|head -1)
-LINUX_DIR_PATH = $(shell dpkg -L ${PKG_KERNEL_HEADERS} | sed -n '/^\/lib\/modules\/.*\/build$/p')
+LINUX_DIR_PATH = $(shell dpkg -L zulu-kernel-headers | sed -n '/^\/lib\/modules\/.*\/build$/p')
 
 %:
 	dh $@
