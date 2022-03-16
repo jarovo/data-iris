@@ -27,7 +27,7 @@ $(WORK)/imx8mm-pinfunc.h:
 	@ln -s $(LINUX_DIR_PATH)/arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h $@
 
 clean:
-	MAKEFLAGS="$(MAKEFLAGS)" $(MAKE) -C $(LINUX_DIR_PATH) M=$(PWD)/$(WORK) clean
+	@touch $(WORK)/Makefile && MAKEFLAGS="$(MAKEFLAGS)" $(MAKE) -C $(LINUX_DIR_PATH) M=$(PWD)/$(WORK) clean
 	rm -f $(WORK)/*.dts
 	rm -f $(WORK)/Makefile
 	rm $(WORK)/imx8mm-pinfunc.h
