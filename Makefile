@@ -20,7 +20,7 @@ all: $(WORK)/imx8mm-pinfunc.h
 
 install: $(wildcard $(WORK)/*.dtb)
 	mkdir -p $(DESTDIR)/$(DTS_DEST_DIR)
-	$(INSTALL) -m 644 $^ $(DESTDIR)/${DEST_DIR}
+	$(INSTALL) -m 644 $^ $(DESTDIR)/$(DTS_DEST_DIR)
 
 $(WORK)/imx8mm-pinfunc.h:
 	@mkdir -p $(WORK)
