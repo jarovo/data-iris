@@ -22,16 +22,39 @@ class Exporter:
 		if outputdir and outputdir[-1]!='/':
 			self.outputdir += '/'
 		self.dtslist = []
+		self.products = {}
+		self.boards = {}
 
 	def get_name(self, id, prefix="", slot=None):
 		if slot==None:
-			return "%s%04x.dts" % (prefix, id)
-		return "%s%04x-slot%d.dts" % (prefix, id, slot)
+			return "%s%04x" % (prefix, id)
+		return "%s%04x-slot%d" % (prefix, id, slot)
 		
 	def write(self, name, content):
 		with open(self.outputdir+name, 'w') as f:
 			f.write(content)
-		self.dtslist.append(name)
+
+	def writedts(self, name, content):
+		self.write(name+".dts", content)
+		self.dtslist.append(name+".dts")
+
+	def add_product(self, id, name):
+		try:
+			self.products[str(id)] += " " + name
+		except KeyError:
+			self.products[str(id)] = name
+
+	def add_board(self, id, slot, name):
+		key = "%s.%d" % (id,slot)
+		try:
+			subdict = self.boards[str(id)]
+		except KeyError:
+			subdict = {}
+			self.boards[str(id)] = subdict
+		try:
+			subdict[str(slot)] += " " + name
+		except KeyError:
+			subdict[str(slot)] = name
 
 
 def gener_by_desc(description, uniee_data, jinjaenv, exporter):
@@ -47,7 +70,8 @@ def gener_by_desc(description, uniee_data, jinjaenv, exporter):
 		t = jinjaenv.get_template(name=p_desc["template"])
 		result = t.render(id=p_id)
 		ename = exporter.get_name(p_id, prefix="bb")
-		exporter.write(ename, result)
+		exporter.writedts(ename, result)
+		exporter.add_product(p_id, ename)
 
 	data_board = uniee_data["board"]["model"]
 	for board, b_desc in description["board"].items():
@@ -63,8 +87,15 @@ def gener_by_desc(description, uniee_data, jinjaenv, exporter):
 			params = description["slot"][str(slot)]
 			result = t.render(id=b_id, slot=slot, **params)
 			ename = exporter.get_name(b_id, prefix=prefix, slot=slot)
-			exporter.write(ename, result)
+			exporter.writedts(ename, result)
+			exporter.add_board(b_id, slot, ename)
 
+
+def gener_library(jinjaenv, uniee_data, exporter):
+	t = jinjaenv.get_template(name="unipi-values.template.c")
+	result = t.render(product_dt=exporter.products, board_dt=exporter.boards, **uniee_data)
+	with open("unipi-values.c", 'w') as f:
+		f.write(result)
 
 def gener_makefile(jinjaenv, exporter):
 	t = jinjaenv.get_template(name="Makefile.template")
@@ -95,6 +126,7 @@ if __name__ == "__main__":
 	try:
 		gener_by_desc(description, uniee_data, jinjaenv, exporter)
 		gener_makefile(jinjaenv, exporter)
+		gener_library(jinjaenv, uniee_data, exporter)
 		sys.exit(0)
 
 	except EDescriptionError as E:
