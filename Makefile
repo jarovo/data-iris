@@ -5,7 +5,7 @@ LINUX_DIR_PATH = /lib/modules/$(shell uname -r)/build
 INSTALL = install
 PWD = $(shell pwd)
 WORK = overlays
-DEST_DIR = /opt/unipi/os-configurator/data/overlays
+DTS_DEST_DIR = /opt/unipi/os-configurator/data/overlays
 
 
 #DTC_FLAGS_unipi-iris-unispi-slot12 := -@
@@ -16,11 +16,11 @@ dtsi = $(wildcard *.dtsi)
 all: $(WORK)/imx8mm-pinfunc.h
 	@python3 render-slot.py description.yaml -t template -o $(WORK)
 	@#cp *.dtsi $(WORK)
-	#MAKEFLAGS="$(MAKEFLAGS)" $(MAKE) -C $(LINUX_DIR_PATH) M=$(PWD)/$(WORK)
+	MAKEFLAGS="$(MAKEFLAGS)" $(MAKE) -C $(LINUX_DIR_PATH) M=$(PWD)/$(WORK)
 
 install: $(wildcard $(WORK)/*.dtb)
-	@mkdir -p $(INSTALL_DIR)/${DEST_DIR}
-	$(INSTALL) -m 644 $^ $(INSTALL_DIR)/${DEST_DIR}
+	mkdir -p $(DESTDIR)/$(DTS_DEST_DIR)
+	$(INSTALL) -m 644 $^ $(DESTDIR)/${DEST_DIR}
 
 $(WORK)/imx8mm-pinfunc.h:
 	@mkdir -p $(WORK)
