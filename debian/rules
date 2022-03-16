@@ -3,7 +3,7 @@
 # output every command that modifies files on the build system.
 DH_VERBOSE = 1
 
-LINUX_DIR_PATH = $(shell dpkg -L zulu-kernel-headers | sed -n '/^\/lib\/modules\/.*\/build$/p')
+LINUX_DIR_PATH = $(shell dpkg -L zulu-kernel-headers | sed -n '/^\/lib\/modules\/.*\/build$$/p')
 
 %:
 	dh $@
