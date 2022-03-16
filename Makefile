@@ -16,7 +16,7 @@ dtsi = $(wildcard *.dtsi)
 all: $(WORK)/imx8mm-pinfunc.h
 	@python3 render-slot.py description.yaml -t template -o $(WORK)
 	@#cp *.dtsi $(WORK)
-	MAKEFLAGS="$(MAKEFLAGS)" $(MAKE) -C $(LINUX_DIR_PATH) M=$(PWD)/$(WORK)
+	#MAKEFLAGS="$(MAKEFLAGS)" $(MAKE) -C $(LINUX_DIR_PATH) M=$(PWD)/$(WORK)
 
 install: $(wildcard $(WORK)/*.dtb)
 	@mkdir -p $(INSTALL_DIR)/${DEST_DIR}
