@@ -38,7 +38,8 @@ libunipidata.so: unipi-values.o
 install: $(wildcard $(WORK)/*.dtb)
 	mkdir -p $(DESTDIR)/$(DTS_DEST_DIR)
 	$(INSTALL) -m 644 $^ $(DESTDIR)/$(DTS_DEST_DIR)
-	$(INSTALL) -m 644 libunipidata.so $(DESTDIR)/$(LIB_DEST_DIR)
+	$(INSTALL) -m 644 unipi_values.py $(DESTDIR)/$(LIB_DEST_DIR)
+	@#$(INSTALL) -m 644 libunipidata.so $(DESTDIR)/$(LIB_DEST_DIR)
 
 clean:
 	@touch $(WORK)/Makefile && MAKEFLAGS="$(MAKEFLAGS)" $(MAKE) -C $(LINUX_DIR_PATH) M=$(PWD)/$(WORK) clean
@@ -46,3 +47,4 @@ clean:
 	@rm -f $(WORK)/Makefile
 	@rm -f $(WORK)/imx8mm-pinfunc.h
 	@rm -f libunipidata.so unipi-values.c unipi-values.o
+	@rm -f udev/* unipi-values.py
