@@ -11,7 +11,7 @@
 	fragment@4 {
 		target-path = "/";
 		__overlay__ {
-			lte_rfkill {
+			lte_kill{{slot}} {
 				compatible = "unipi,rfkill-quectel912";
 				type = "wwan";
 				algo = "pulse";
@@ -25,15 +25,15 @@
 	fragment@5 {
 		target-path = "/";
 		__overlay__ {
-			lte-leds {
+			led_slot{{slot}} {
 				compatible = "gpio-leds";
 				lte-led@1 {
-					label = "unipi-lte-{{slot}}-sig";
+					label = "lte-{{slot}}-sig";
 					gpios = <&gpio_slot{{slot}} 2 1>;
 					default-state = "off";
 				};
 				lte-led@2 {
-					label = "unipi-lte-{{slot}}-int";
+					label = "lte-{{slot}}-int";
 					gpios = <&gpio_slot{{slot}} 3 1>;
 					default-state = "off";
 				};

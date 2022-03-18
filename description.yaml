@@ -18,6 +18,7 @@ slot:
         tty_b:  ttymxc3
         spichip: ecspi4
         spiaddress: 1
+        usbport: 1
     "21": 
         pca_address: 0xa
         uart_a: uart1
@@ -34,14 +35,17 @@ slot:
         tty_b:  ttymxc1
         spichip: ecspi4
         spiaddress: 2
+        usbport: 2
     "32": 
         pca_address: 0xc
         spichip: ecspi4
         spiaddress: 3
+        usbport: 3
     "42": 
         pca_address: 0xd
         spichip: ecspi4
         spiaddress: 4
+        usbport: 4
     "52": 
         pca_address: 0xe
         spichip: ecspi4
@@ -72,6 +76,7 @@ board:
 
     IC_R485x2R422_1:
         template: ic-r485x2r422-1.template
+        udev: ic-r485x2r422-1.template.rules
         slot: [ 11, 12, 21, 22 ]
         uart: [ "uart_a", "uart_b" ]
 
@@ -85,12 +90,13 @@ board:
         slot: [ 11, 12, 21, 22, 32, 42, 52 ]
 
     IC_USBSATA_1:
-        template: id-usbsata-1.template
+        #template: id-usbsata-1.template
         slot: [ 12, 22, 32, 42 ]
         usb: 1
 
     ID_LTE_1:
         template: id-lte-1.template
+        udev: id-lte-1.template.rules
         slot: [ 12, 22, 32, 42 ]
         usb: 1
 

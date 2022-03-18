@@ -1,0 +1,7 @@
+
+ACTION=="add", SUBSYSTEM=="tty", DEVPATH=="*/tty/{{tty_a}}", RUN+="/opt/unipi/tools/uhelper rs485.{{slot}}.1 tty {{slot}} $name DEVNAME"
+ACTION=="add", SUBSYSTEM=="tty", DEVPATH=="*/tty/{{tty_b}}", RUN+="/opt/unipi/tools/uhelper rs485.{{slot}}.2 tty {{slot}} $name DEVNAME"
+ACTION=="add", SUBSYSTEM=="leds", DEVPATH=="*/led_slot{{slot}}/leds/rs485-led{{slot}}.1-rx",  RUN+="/opt/unipi/tools/uhelper rs485.{{slot}}.1 led.rx {{slot}} $name DEVNAME"
+ACTION=="add", SUBSYSTEM=="leds", DEVPATH=="*/led_slot{{slot}}/leds/rs485-led{{slot}}.1-tx",  RUN+="/opt/unipi/tools/uhelper rs485.{{slot}}.1 led.tx {{slot}} $name DEVNAME"
+ACTION=="add", SUBSYSTEM=="leds", DEVPATH=="*/led_slot{{slot}}/leds/rs485-led{{slot}}.2-rx",  RUN+="/opt/unipi/tools/uhelper rs485.{{slot}}.2 led.rx {{slot}} $name DEVNAME"
+ACTION=="add", SUBSYSTEM=="leds", DEVPATH=="*/led_slot{{slot}}/leds/rs485-led{{slot}}.2-tx",  RUN+="/opt/unipi/tools/uhelper rs485.{{slot}}.2 led.tx {{slot}} $name DEVNAME"
