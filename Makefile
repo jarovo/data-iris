@@ -6,6 +6,7 @@ INSTALL = install
 PWD = $(shell pwd)
 WORK = overlays
 DTS_DEST_DIR = /opt/unipi/os-configurator/overlays
+UDEV_DEST_DIR = /opt/unipi/os-configurator/udev
 LIB_DEST_DIR = /opt/unipi/os-configurator
 DESCRIPTION = description.yaml
 
@@ -35,11 +36,17 @@ unipi-values.o: unipi-values.c
 libunipidata.so: unipi-values.o
 	gcc $^ -shared -o $@
 
-install: $(wildcard $(WORK)/*.dtb)
-	mkdir -p $(DESTDIR)/$(DTS_DEST_DIR)
-	$(INSTALL) -m 644 $^ $(DESTDIR)/$(DTS_DEST_DIR)
+install: install-dtb install-udev
 	$(INSTALL) -m 644 unipi_values.py $(DESTDIR)/$(LIB_DEST_DIR)
 	@#$(INSTALL) -m 644 libunipidata.so $(DESTDIR)/$(LIB_DEST_DIR)
+
+install-dtb: $(wildcard $(WORK)/*.dtb)
+	mkdir -p $(DESTDIR)/$(DTS_DEST_DIR)
+	$(INSTALL) -m 644 $^ $(DESTDIR)/$(DTS_DEST_DIR)
+
+install-udev: $(wildcard udev/*.rules)
+	mkdir -p $(DESTDIR)/$(UDEV_DEST_DIR)
+	$(INSTALL) -m 644 $^ $(DESTDIR)/$(UDEV_DEST_DIR)
 
 clean:
 	@touch $(WORK)/Makefile && MAKEFLAGS="$(MAKEFLAGS)" $(MAKE) -C $(LINUX_DIR_PATH) M=$(PWD)/$(WORK) clean
