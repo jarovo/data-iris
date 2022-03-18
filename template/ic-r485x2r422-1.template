@@ -18,28 +18,28 @@
 	fragment@4 {
 		target-path = "/";
 		__overlay__ {
-			uartleds {
+			led_slot{{slot}} {
 				compatible = "gpio-leds";
 				uart-led@0 {
-					label = "unipi-led{{slot}}-rx2";
+					label = "rs485-led{{slot}}.2-rx";
 					gpios = <&gpio_slot{{slot}} 0 1>;
 					default-state = "off";
 					linux,default-trigger = "{{tty_b}}-rx";
 				};
 				uart-led@1 {
-					label = "unipi-led{{slot}}-tx2";
+					label = "rs485-led{{slot}}.2-tx";
 					gpios = <&gpio_slot{{slot}} 1 1>;
 					linux,default-trigger = "{{tty_b}}-tx";
 					default-state = "off";
 				};
 				uart-led@2 {
-					label = "unipi-led{{slot}}-rx1";
+					label = "rs485-led{{slot}}.1-rx";
 					gpios = <&gpio_slot{{slot}} 2 1>;
 					default-state = "off";
 					linux,default-trigger = "{{tty_a}}-rx";
 				};
 				uart-led@3 {
-					label = "unipi-led{{slot}}-tx1";
+					label = "rs485-led{{slot}}.2-tx";
 					gpios = <&gpio_slot{{slot}} 3 1>;
 					default-state = "off";
 					linux,default-trigger = "{{tty_a}}-tx";

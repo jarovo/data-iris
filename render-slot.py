@@ -17,10 +17,13 @@ def load_yaml_values(filename):
 
 class Exporter:
 
-	def __init__(self, outputdir):
-		self.outputdir = outputdir
-		if outputdir and outputdir[-1]!='/':
-			self.outputdir += '/'
+	def __init__(self, dtdir, udevdir):
+		self.dtdir = dtdir
+		if dtdir and dtdir[-1]!='/':
+			self.dtdir += '/'
+		self.udevdir = udevdir
+		if udevdir and udevdir[-1]!='/':
+			self.udevdir += '/'
 		self.dtslist = []
 		self.products = {}
 		self.boards = {}
@@ -31,30 +34,75 @@ class Exporter:
 		return "%s%04x-slot%d" % (prefix, id, slot)
 		
 	def write(self, name, content):
-		with open(self.outputdir+name, 'w') as f:
+		with open(self.dtdir+name, 'w') as f:
 			f.write(content)
 
 	def writedts(self, name, content):
 		self.write(name+".dts", content)
 		self.dtslist.append(name+".dts")
 
-	def add_product(self, id, name):
-		try:
-			self.products[str(id)] += " " + name
-		except KeyError:
-			self.products[str(id)] = name
+	def writeudev(self, name, content):
+		with open(self.udevdir+name+".rules", 'w') as f:
+			f.write(content)
 
-	def add_board(self, id, slot, name):
-		key = "%s.%d" % (id,slot)
-		try:
-			subdict = self.boards[str(id)]
-		except KeyError:
-			subdict = {}
-			self.boards[str(id)] = subdict
-		try:
-			subdict[str(slot)] += " " + name
-		except KeyError:
-			subdict[str(slot)] = name
+	def add_product(self, id, **kwargs):
+		product = self.products.get(str(id), {})
+		def appendstr(name,value):
+			try:
+				product[name] += " " + value
+			except KeyError:
+				product[name] = value
+		for k,v in kwargs.items():
+			if v: appendstr(k, v)
+		self.products[str(id)] = product
+
+
+	def add_board(self, id, slot, **kwargs):
+		subdict = self.boards.get(str(id),{})
+		slotdict = subdict.get(str(slot),{})
+		def appendstr(name,value):
+			try:
+				slotdict[name] += " " + value
+			except KeyError:
+				slotdict[name] = value
+		for k,v in kwargs.items():
+			if v: appendstr(k, v)
+		subdict[str(slot)] = slotdict
+		self.boards[str(id)] = subdict
+
+
+def render_product_dt(p_id, p_desc, jinjaenv, exporter):
+	t = jinjaenv.get_template(name=p_desc["template"])
+	result = t.render(id=p_id)
+	dtname = exporter.get_name(p_id, prefix="bb")
+	exporter.writedts(dtname, result)
+	exporter.add_product(p_id, dt=dtname)
+
+def render_product_udev(p_id, p_desc, jinjaenv, exporter):
+	t = jinjaenv.get_template(name=p_desc["udev"])
+	result = t.render(id=p_id)
+	udevname = exporter.get_name(p_id, prefix="bb")
+	exporter.writeudev(udevname, result)
+	exporter.add_product(p_id, udev=udevname)
+
+
+def render_board_dt(b_id, b_desc, prefix, description, jinjaenv, exporter):
+	t = jinjaenv.get_template(name=b_desc["template"])
+	for slot in b_desc["slot"]:
+		params = description["slot"][str(slot)]
+		result = t.render(id=b_id, slot=slot, **params)
+		dtname = exporter.get_name(b_id, prefix=prefix, slot=slot)
+		exporter.writedts(dtname, result)
+		exporter.add_board(b_id, slot, dt=dtname)
+
+def render_board_udev(b_id, b_desc, prefix, description, jinjaenv, exporter):
+	t = jinjaenv.get_template(name=b_desc["udev"])
+	for slot in b_desc["slot"]:
+		params = description["slot"][str(slot)]
+		result = t.render(id=b_id, slot=slot, **params)
+		udevname = exporter.get_name(b_id, prefix=prefix, slot=slot)
+		exporter.writeudev(udevname, result)
+		exporter.add_board(b_id, slot, udev=udevname)
 
 
 def gener_by_desc(description, uniee_data, jinjaenv, exporter):
@@ -67,11 +115,10 @@ def gener_by_desc(description, uniee_data, jinjaenv, exporter):
 			raise EDescriptionError('Invalid value for product name "%s"'% product) from None
 
 		if not isinstance(p_desc, dict): continue
-		t = jinjaenv.get_template(name=p_desc["template"])
-		result = t.render(id=p_id)
-		ename = exporter.get_name(p_id, prefix="bb")
-		exporter.writedts(ename, result)
-		exporter.add_product(p_id, ename)
+		if "template" in p_desc:
+			render_product_dt(p_id, p_desc, jinjaenv, exporter)
+		if "udev" in p_desc:
+			render_product_udev(p_id, p_desc, jinjaenv, exporter)
 
 	data_board = uniee_data["board"]["model"]
 	for board, b_desc in description["board"].items():
@@ -82,19 +129,22 @@ def gener_by_desc(description, uniee_data, jinjaenv, exporter):
 		prefix = board[:2].lower()
 
 		if not isinstance(b_desc, dict): continue
-		t = jinjaenv.get_template(name=b_desc["template"])
-		for slot in b_desc["slot"]:
-			params = description["slot"][str(slot)]
-			result = t.render(id=b_id, slot=slot, **params)
-			ename = exporter.get_name(b_id, prefix=prefix, slot=slot)
-			exporter.writedts(ename, result)
-			exporter.add_board(b_id, slot, ename)
+		if "template" in b_desc:
+			render_board_dt(b_id, b_desc, prefix, description, jinjaenv, exporter)
+		if "udev" in b_desc:
+			render_board_udev(b_id, b_desc, prefix, description, jinjaenv, exporter)
 
 
 def gener_library(jinjaenv, uniee_data, exporter):
 	t = jinjaenv.get_template(name="unipi-values.template.c")
-	result = t.render(product_dt=exporter.products, board_dt=exporter.boards, **uniee_data)
+	result = t.render(product_dt=exporter.products, board_dt=exporter.boards, warning=warning, **uniee_data)
 	with open("unipi-values.c", 'w') as f:
+		f.write(result)
+
+def gener_pylibrary(jinjaenv, uniee_data, exporter):
+	t = jinjaenv.get_template(name="unipi-values.template.py")
+	result = t.render(product_dt=exporter.products, board_dt=exporter.boards, warning=warning, **uniee_data)
+	with open("unipi_values.py", 'w') as f:
 		f.write(result)
 
 def gener_makefile(jinjaenv, exporter):
@@ -118,7 +168,7 @@ if __name__ == "__main__":
 	jinjaenv = Environment(loader=loader)
 
 	outdir = args.output if args.output else "overlays"
-	exporter = Exporter(outdir)
+	exporter = Exporter(outdir, "udev")
 
 	uniee_data = load_yaml_values(datafile)
 
@@ -127,6 +177,7 @@ if __name__ == "__main__":
 		gener_by_desc(description, uniee_data, jinjaenv, exporter)
 		gener_makefile(jinjaenv, exporter)
 		gener_library(jinjaenv, uniee_data, exporter)
+		gener_pylibrary(jinjaenv, uniee_data, exporter)
 		sys.exit(0)
 
 	except EDescriptionError as E:
