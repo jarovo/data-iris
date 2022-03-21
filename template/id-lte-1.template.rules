@@ -1,10 +1,12 @@
 
-ACTION=="add", SUBSYSTEM=="tty", DEVPATH=="*ci_hdrc.0/usb1/1-1/1-1.{{usbport}}/1-1.{{usbport}}:1.3/tty*",  RUN+="/opt/unipi/tools/uhelper lte.##LTE## tty1 {{slot}} $name DEVNAME"
-ACTION=="add", SUBSYSTEM=="tty", DEVPATH=="*ci_hdrc.0/usb1/1-1/1-1.{{usbport}}/1-1.{{usbport}}:1.4/tty*",  RUN+="/opt/unipi/tools/uhelper lte.##LTE## tty2 {{slot}} $name DEVNAME"
-ACTION=="add", SUBSYSTEM=="net", DEVPATH=="*ci_hdrc.0/usb1/1-1/1-1.{{usbport}}/1-1.{{usbport}}:1.0/net/*", RUN+="/opt/unipi/tools/uhelper lte.##LTE## net  {{slot}} $name INTERFACE"
+#::: ENV{_LTE{{slot}}_}="<lte>"
 
-ACTION=="add", SUBSYSTEM=="rfkill", DEVPATH=="/devices/platform/lte_kill{{slot}}/rfkill/rfkill0", RUN+="/opt/unipi/tools/uhelper lte.##LTE## rfkill  {{slot}} $name"
-ACTION=="add", SUBSYSTEM=="rfkill", DEVPATH=="/devices/platform/lte_kill{{slot}}/rfkill/rfkill1", RUN+="/opt/unipi/tools/uhelper lte.##LTE## rfreset {{slot}} $name"
+ACTION=="add", SUBSYSTEM=="tty", DEVPATH=="*ci_hdrc.0/usb1/1-1/1-1.{{usbport}}/1-1.{{usbport}}:1.3/tty*",  RUN+="/opt/unipi/tools/uhelper lte.$env{_LTE{{slot}}_} tty1 {{slot}} $name DEVNAME"
+ACTION=="add", SUBSYSTEM=="tty", DEVPATH=="*ci_hdrc.0/usb1/1-1/1-1.{{usbport}}/1-1.{{usbport}}:1.4/tty*",  RUN+="/opt/unipi/tools/uhelper lte.$env{_LTE{{slot}}_} tty2 {{slot}} $name DEVNAME"
+ACTION=="add", SUBSYSTEM=="net", DEVPATH=="*ci_hdrc.0/usb1/1-1/1-1.{{usbport}}/1-1.{{usbport}}:1.0/net/*", RUN+="/opt/unipi/tools/uhelper lte.$env{_LTE{{slot}}_} net  {{slot}} $name INTERFACE"
 
-ACTION=="add", SUBSYSTEM=="leds", DEVPATH=="*/led_slot{{slot}}/leds/lte-{{slot}}-sig",  RUN+="/opt/unipi/tools/uhelper lte.##LTE## led.sig {{slot}} $name DEVNAME"
-ACTION=="add", SUBSYSTEM=="leds", DEVPATH=="*/led_slot{{slot}}/leds/lte-{{slot}}-int",  RUN+="/opt/unipi/tools/uhelper lte.##LTE## led.int {{slot}} $name DEVNAME"
+ACTION=="add", SUBSYSTEM=="rfkill", DEVPATH=="/devices/platform/lte_kill{{slot}}/rfkill/rfkill0", RUN+="/opt/unipi/tools/uhelper lte.$env{_LTE{{slot}}_} rfkill  {{slot}} $name"
+ACTION=="add", SUBSYSTEM=="rfkill", DEVPATH=="/devices/platform/lte_kill{{slot}}/rfkill/rfkill1", RUN+="/opt/unipi/tools/uhelper lte.$env{_LTE{{slot}}_} rfreset {{slot}} $name"
+
+ACTION=="add", SUBSYSTEM=="leds", DEVPATH=="*/led_slot{{slot}}/leds/lte-{{slot}}-sig",  RUN+="/opt/unipi/tools/uhelper lte.$env{_LTE{{slot}}_} led.sig {{slot}} $name DEVNAME"
+ACTION=="add", SUBSYSTEM=="leds", DEVPATH=="*/led_slot{{slot}}/leds/lte-{{slot}}-int",  RUN+="/opt/unipi/tools/uhelper lte.$env{_LTE{{slot}}_} led.int {{slot}} $name DEVNAME"

@@ -31,7 +31,7 @@ class Exporter:
 	def get_name(self, id, prefix="", slot=None):
 		if slot==None:
 			return "%s%04x" % (prefix, id)
-		return "%s%04x-slot%d" % (prefix, id, slot)
+		return "%s%04x_slot%d" % (prefix, id, slot)
 		
 	def write(self, name, content):
 		with open(self.dtdir+name, 'w') as f:
@@ -119,6 +119,8 @@ def gener_by_desc(description, uniee_data, jinjaenv, exporter):
 			render_product_dt(p_id, p_desc, jinjaenv, exporter)
 		if "udev" in p_desc:
 			render_product_udev(p_id, p_desc, jinjaenv, exporter)
+		if ("options" in p_desc) and isinstance(p_desc["options"], dict):
+			exporter.add_product(p_id, **p_desc["options"])
 
 	data_board = uniee_data["board"]["model"]
 	for board, b_desc in description["board"].items():
@@ -133,6 +135,9 @@ def gener_by_desc(description, uniee_data, jinjaenv, exporter):
 			render_board_dt(b_id, b_desc, prefix, description, jinjaenv, exporter)
 		if "udev" in b_desc:
 			render_board_udev(b_id, b_desc, prefix, description, jinjaenv, exporter)
+		if ("options" in b_desc) and isinstance(b_desc["options"], dict):
+			for slot in b_desc["slot"]:
+				exporter.add_board(b_id, slot, **b_desc["options"])
 
 
 def gener_library(jinjaenv, uniee_data, exporter):
