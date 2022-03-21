@@ -7,29 +7,34 @@
 #  Created on: Jan 14, 2022
 #      Author: Miroslav Ondra <ondra@faster.cz>
 # 
+{% include "sss" ignore missing %}
 
 class Product:
 	def __init__(self, id, name, **kwargs):
 		self.id = id
 		self.name = name
-		self.dt = kwargs.get('dt', None)
+		self.vars = kwargs
+		#self.dt = kwargs.get('dt', None)
 
 class Board:
-	def __init__(self, id, name, **kwargs):
+	def __init__(self, id, name, slots, **kwargs):
 		self.id = id
 		self.name = name
-		self.dt = kwargs.get('dt', None)
-		self.slots = kwargs.get('slots', None)
+		#self.dt = kwargs.get('dt', None)
+		self.slots = slots
+		self.vars = kwargs
 
 class Slot:
 	def __init__(self, slot, **kwargs):
 		self.slot = slot
-		self.dt = kwargs.get('dt', None)
+		self.vars = kwargs
+		#self.dt = kwargs.get('dt', None)
 
 products = {
 {%- for pname,pid in platform.id.items() %}
   '{{ pid|int }}': Product({{ pid|int }}, '{{ pname }}'
     {%- if pid|trim in product_dt -%}
+             {%- for k,v in product_dt[pid|trim].items() -%}, {{ k }}='{{ v }}' {% endfor -%}
     {%- endif -%}
     ),
 {%- endfor %}
@@ -38,16 +43,18 @@ products = {
 boards = {
 {%- for bname,b_id in board.model.items() %}
   '{{ b_id|int }}': Board({{ b_id|int }}, '{{ bname }}'
-    {#- %- if b_id|trim in board_dt -%}
-    , dt="{{ board_dt[v|trim] }}"
-    {%- endif -%  -#}
     {%- if b_id|trim in board_dt -%}
-    , slots={
+    ,{
         {%- for s,sv in board_dt[b_id|trim].items() %}
              '{{s|int}}': Slot({{s|int}}
              {%- for k,v in sv.items() -%}, {{ k }}='{{ v }}' {% endfor -%}),
         {%- endfor %}
     }
+    {#- %- if b_id|trim in board_dt -%}
+    , dt="{{ board_dt[v|trim] }}"
+    {%- endif -%  -#}
+    {%- else -%}
+    , None
     {%- endif -%}
            ),
 {%- endfor %}
@@ -82,6 +89,7 @@ def unipi_board_info(board_id, slot=None):
 			return board_info
 	except KeyError:
 		return None
+	if board_info.slots is None: return board_info
 	try:
 		return board_info.slots[str(slot)]
 	except KeyError:

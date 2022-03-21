@@ -99,6 +99,8 @@ board:
         udev: id-lte-1.template.rules
         slot: [ 12, 22, 32, 42 ]
         usb: 1
+        options:
+            has_lte: 1
 
     IC_AiF2Ao1_1:    104
     IC_DiS2Do2_1:    105
