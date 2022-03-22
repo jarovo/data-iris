@@ -24,3 +24,5 @@ overlays/Module.symvers
 overlays/imx8mm-pinfunc.h
 overlays/modules.order
 udev/*.rules
+unipi-values.c
+unipi_values.py
