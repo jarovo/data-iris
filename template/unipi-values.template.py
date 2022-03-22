@@ -66,7 +66,7 @@ family = {
 
 def unipi_product_info(product_id, version=None):
 	''' return product_info or none '''
-	return products.get(str(product_id), none)
+	return products.get(str(product_id), None)
 
 def unipi_product_info_by_name(product_name, version=None):
 	''' return product_info or none '''
@@ -80,7 +80,7 @@ def unipi_board_info(board_id, slot=None, version=None):
 	board_info = boards.get(str(board_id), None)
 	if slot == None or board_info == None:
 		return board_info
-	if  or board_info.slots is None:
+	if board_info.slots is None:
 		return None
 	return board_info.slots.get(str(slot), None)
 
