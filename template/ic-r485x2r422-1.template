@@ -39,7 +39,7 @@
 					linux,default-trigger = "{{tty_a}}-rx";
 				};
 				uart-led@3 {
-					label = "rs485-led{{slot}}.2-tx";
+					label = "rs485-led{{slot}}.1-tx";
 					gpios = <&gpio_slot{{slot}} 3 1>;
 					default-state = "off";
 					linux,default-trigger = "{{tty_a}}-tx";

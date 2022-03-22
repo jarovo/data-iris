@@ -14,13 +14,11 @@ class Product:
 		self.id = id
 		self.name = name
 		self.vars = kwargs
-		#self.dt = kwargs.get('dt', None)
 
 class Board:
 	def __init__(self, id, name, slots, **kwargs):
 		self.id = id
 		self.name = name
-		#self.dt = kwargs.get('dt', None)
 		self.slots = slots
 		self.vars = kwargs
 
@@ -28,7 +26,6 @@ class Slot:
 	def __init__(self, slot, **kwargs):
 		self.slot = slot
 		self.vars = kwargs
-		#self.dt = kwargs.get('dt', None)
 
 products = {
 {%- for pname,pid in platform.id.items() %}
@@ -67,39 +64,28 @@ family = {
 {%- endfor %}
 }
 
-def unipi_product_info(product_id):
+def unipi_product_info(product_id, version=None):
 	''' return product_info or none '''
-	try:
-		return products[str(product_id)]
-	except KeyError:
-		return None
+	return products.get(str(product_id), none)
 
-def unipi_product_info_by_name(product_name):
+def unipi_product_info_by_name(product_name, version=None):
 	''' return product_info or none '''
 	for k,v in products.items():
 		if v.name.lower() == product_name.lower(): 
 			return v
 	return None
 
-def unipi_board_info(board_id, slot=None):
+def unipi_board_info(board_id, slot=None, version=None):
 	''' return board_info or None '''
-	try:
-		board_info = boards[str(board_id)]
-		if slot == None:
-			return board_info
-	except KeyError:
+	board_info = boards.get(str(board_id), None)
+	if slot == None or board_info == None:
+		return board_info
+	if  or board_info.slots is None:
 		return None
-	if board_info.slots is None: return board_info
-	try:
-		return board_info.slots[str(slot)]
-	except KeyError:
-		pass
-	return None
+	return board_info.slots.get(str(slot), None)
+
 
 def unipi_family_name(product_id):
 	''' return family name or none '''
-	try:
-		return family[str(product_id & 0xff)]
-	except KeyError:
-		return None
+	return family.get(str(product_id & 0xff), None)
 

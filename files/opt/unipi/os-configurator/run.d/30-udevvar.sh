@@ -5,7 +5,7 @@
 
 #UDEV="id0074_slot12"
 
-SRC=/opt/unipi/os-configurator/overlays
+SRC=/opt/unipi/os-configurator/udev
 DST=/etc/udev/rules.d/45-udevvar.rules
 
 if [ -n "$UDEV" ]; then 
