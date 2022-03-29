@@ -12,12 +12,10 @@ DESCRIPTION = description.yaml
 
 #DTC_FLAGS_unipi-iris-unispi-slot12 := -@
 templates =  $(wildcard *.template)
-dtsi = $(wildcard *.dtsi)
 
 #all: $(dtsi) $(templates) $(WORK)/imx8mm-pinfunc.h
 
 all: $(WORK)/imx8mm-pinfunc.h libunipidata.so
-	@#cp *.dtsi $(WORK)
 	MAKEFLAGS="$(MAKEFLAGS)" $(MAKE) -C $(LINUX_DIR_PATH) M=$(PWD)/$(WORK)
 
 $(WORK)/imx8mm-pinfunc.h:

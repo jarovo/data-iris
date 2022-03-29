@@ -29,10 +29,11 @@ class Exporter:
 		self.boards = {}
 
 	def get_name(self, id, prefix="", slot=None):
+		if isinstance(id, int): id = "%04x" % id
 		if slot==None:
-			return "%s%04x" % (prefix, id)
-		return "%s%04x_slot%d" % (prefix, id, slot)
-		
+			return prefix+id.lower()
+		return "%s%s_slot%d" % (prefix, id.lower(), slot)
+
 	def write(self, name, content):
 		with open(self.dtdir+name, 'w') as f:
 			f.write(content)
@@ -73,15 +74,15 @@ class Exporter:
 
 def render_product_dt(p_id, p_desc, jinjaenv, exporter):
 	t = jinjaenv.get_template(name=p_desc["template"])
-	result = t.render(id=p_id)
-	dtname = exporter.get_name(p_id, prefix="bb")
+	result = t.render(id=p_id, **p_desc)
+	dtname = exporter.get_name(p_id, prefix="unipi_")
 	exporter.writedts(dtname, result)
 	exporter.add_product(p_id, dt=dtname)
 
 def render_product_udev(p_id, p_desc, jinjaenv, exporter):
 	t = jinjaenv.get_template(name=p_desc["udev"])
-	result = t.render(id=p_id)
-	udevname = exporter.get_name(p_id, prefix="bb")
+	result = t.render(id=p_id, **p_desc)
+	udevname = exporter.get_name(p_id, prefix="")
 	exporter.writeudev(udevname, result)
 	exporter.add_product(p_id, udev=udevname)
 
@@ -116,12 +117,13 @@ def gener_by_desc(description, uniee_data, jinjaenv, exporter):
 
 		if not isinstance(p_desc, dict): continue
 		if "template" in p_desc:
-			render_product_dt(p_id, p_desc, jinjaenv, exporter)
+			render_product_dt(product, p_desc, jinjaenv, exporter)
 		if "udev" in p_desc:
 			render_product_udev(p_id, p_desc, jinjaenv, exporter)
 		if ("options" in p_desc) and isinstance(p_desc["options"], dict):
 			exporter.add_product(p_id, **p_desc["options"])
 
+	if not "board" in description: return
 	data_board = uniee_data["board"]["model"]
 	for board, b_desc in description["board"].items():
 		try:
