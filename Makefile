@@ -51,5 +51,5 @@ clean:
 	@rm -f $(WORK)/*.dts
 	@rm -f $(WORK)/Makefile
 	@rm -f $(WORK)/imx8mm-pinfunc.h
-	@rm -f libunipidata.so unipi-values.c unipi-values.o
+	@rm -f libunipidata.so unipi-values.c unipi-values.o unipi-values.py
 	@rm -f udev/* unipi-values.py

@@ -9,6 +9,7 @@ slot:
         uart_b: uart2
         tty_b:  ttymxc1
         spichip: ecspi2
+        spibus: 1
         spiaddress: 0
     "12": 
         pca_address: 0x8
@@ -17,6 +18,7 @@ slot:
         uart_b: uart4
         tty_b:  ttymxc3
         spichip: ecspi4
+        spibus: 3
         spiaddress: 1
         usbport: 1
     "21": 
@@ -26,6 +28,7 @@ slot:
         uart_b: uart4
         tty_b:  ttymxc3
         spichip: ecspi2
+        spibus: 1
         spiaddress: 1
     "22": 
         pca_address: 0xb
@@ -34,21 +37,25 @@ slot:
         uart_b: uart2
         tty_b:  ttymxc1
         spichip: ecspi4
+        spibus: 3
         spiaddress: 2
         usbport: 2
     "32": 
         pca_address: 0xc
         spichip: ecspi4
+        spibus: 3
         spiaddress: 3
         usbport: 3
     "42": 
         pca_address: 0xd
         spichip: ecspi4
+        spibus: 3
         spiaddress: 4
         usbport: 4
     "52": 
         pca_address: 0xe
         spichip: ecspi4
+        spibus: 3
         spiaddress: 5
 
 
@@ -101,6 +108,16 @@ board:
         usb: 1
         options:
             has_lte: 1
+
+    IC_GPS_1:
+        template: ic-gps-1.template
+        udev: ic-gps-1.template.rules
+        slot: [ 12, 22, 21, 11 ]
+
+    IC_AccGyro_1:
+        template: ic-accgyro-1.template
+        udev: ic-accgyro-1.template.rules
+        slot: [ 12, 22, 21, 11 ]
 
     IC_AiF2Ao1_1:    104
     IC_DiS2Do2_1:    105
