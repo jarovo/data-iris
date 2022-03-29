@@ -1,0 +1,43 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+ fragment@0 {
+  target = <&i2c3>;
+  __overlay__ {
+      #address-cells = <1>;
+      #size-cells = <0>;
+         gpio_slot1: pca9501@{{pca_address}} {
+          compatible = "nxp,pcf8574";
+          gpio-controller;
+          #gpio-cells = <2>;
+          reg = <{{pca_address}}>;
+          gpio-line-names = "",
+             "AccGyro_ICG_extInt",
+             "AccGyro_MC_extInt_1",
+             "AccGyro_MC_extInt_2",
+             "",
+             "",
+             "",
+             "";
+         };
+  };
+ };
+
+ fragment@1 {
+  target = <&{{spichip}}>;
+  __overlay__ {
+         status = "okay";
+         #address-cells = <1>;
+         #size-cells = <0>;
+
+   spidev_icg: spi@{{spiaddress}} {
+                compatible = "nanopi,spidev";
+                reg = <{{spiaddress}}>;
+                status = "okay";
+                spi-max-frequency = <8000000>;
+            };
+   };
+ };
+
+};
