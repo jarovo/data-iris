@@ -1,5 +1,4 @@
 {% macro unipispi(slot, spichip, spiaddress) %}
-	fragment@1 {
 		target = <&{{spichip}}>;
 		__overlay__ {
 			status = "okay";
@@ -14,7 +13,6 @@
 				modbus-address = <{{slot}}>;
 			};
 		};
-	};
 {% endmacro %}
 
 
