@@ -72,17 +72,17 @@ class Exporter:
 		self.boards[str(id)] = subdict
 
 
-def render_product_dt(p_id, p_desc, jinjaenv, exporter):
+def render_product_dt(p_id, product, p_desc, jinjaenv, exporter):
 	t = jinjaenv.get_template(name=p_desc["template"])
 	result = t.render(id=p_id, **p_desc)
-	dtname = exporter.get_name(p_id, prefix="unipi_")
+	dtname = exporter.get_name(product, prefix="unipi_")
 	exporter.writedts(dtname, result)
 	exporter.add_product(p_id, dt=dtname)
 
-def render_product_udev(p_id, p_desc, jinjaenv, exporter):
+def render_product_udev(p_id, product, p_desc, jinjaenv, exporter):
 	t = jinjaenv.get_template(name=p_desc["udev"])
 	result = t.render(id=p_id, **p_desc)
-	udevname = exporter.get_name(p_id, prefix="")
+	udevname = exporter.get_name(product, prefix="unipi_")
 	exporter.writeudev(udevname, result)
 	exporter.add_product(p_id, udev=udevname)
 
@@ -117,9 +117,9 @@ def gener_by_desc(description, uniee_data, jinjaenv, exporter):
 
 		if not isinstance(p_desc, dict): continue
 		if "template" in p_desc:
-			render_product_dt(product, p_desc, jinjaenv, exporter)
+			render_product_dt(p_id, product, p_desc, jinjaenv, exporter)
 		if "udev" in p_desc:
-			render_product_udev(p_id, p_desc, jinjaenv, exporter)
+			render_product_udev(p_id, product, p_desc, jinjaenv, exporter)
 		if ("options" in p_desc) and isinstance(p_desc["options"], dict):
 			exporter.add_product(p_id, **p_desc["options"])
 
