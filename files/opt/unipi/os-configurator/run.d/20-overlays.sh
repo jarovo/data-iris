@@ -5,7 +5,7 @@
 [ -z "$DT" ] && exit
 
 # create bootcmd.d artefact
-echo "setenv overlay ${DT}" >/etc/bootcmd.d/src/14-overlays
+echo "setenv overlay ${DT}" >/etc/bootcmd.d/src/14-overlays.conf
 
 # append to words in udev list suffix .rules
 dt_dtb_1=$(echo "${DT}" | sed 's/\>/.dtb/g')
