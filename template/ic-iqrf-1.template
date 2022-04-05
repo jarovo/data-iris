@@ -1,4 +1,6 @@
 /dts-v1/;
+{% import 'unipispi.macro' as m  %}
+
 /plugin/;
 
 / {
@@ -53,16 +55,15 @@
 		__overlay__ {
 			iqrfleds {
 				compatible = "gpio-{{slot}}-ledr";
-					iqrf-led@1 {
-						label = "iqrf-{{slot}}-ledr";
-						gpios = <&gpio_slot1 2 1>;
-						default-state = "off";
-					};
-					gw-led@2 {
-						label = "iqrf-{{slot}}-ledg";
-						gpios = <&gpio_slot1 3 1>;
-						default-state = "off";
-					};
+				iqrf-led@1 {
+					label = "iqrf-{{slot}}-ledr";
+					gpios = <&gpio_slot1 2 1>;
+					default-state = "off";
+				};
+				gw-led@2 {
+					label = "iqrf-{{slot}}-ledg";
+					gpios = <&gpio_slot1 3 1>;
+					default-state = "off";
 				};
 			};
 		}; 

@@ -4,38 +4,38 @@
 slot:
     "11": 
         pca_address: 0x9 
-        uart_a: uart1
-        tty_a:  ttymxc0
-        uart_b: uart2
-        tty_b:  ttymxc1
+        uart_a: uart2
+        tty_a:  ttymxc1
+        uart_b: uart4
+        tty_b:  ttymxc3
         spichip: ecspi2
         spibus: 1
         spiaddress: 0
     "12": 
         pca_address: 0x8
-        uart_a: uart1
-        tty_a:  ttymxc0
-        uart_b: uart4
-        tty_b:  ttymxc3
+        uart_a: uart2
+        tty_a:  ttymxc1
+        uart_b: uart1
+        tty_b:  ttymxc0
         spichip: ecspi4
         spibus: 3
         spiaddress: 1
         usbport: 1
     "21": 
         pca_address: 0xa
-        uart_a: uart1
-        tty_a:  ttymxc0
-        uart_b: uart4
-        tty_b:  ttymxc3
+        uart_a: uart4
+        tty_a:  ttymxc3
+        uart_b: uart2
+        tty_b:  ttymxc1
         spichip: ecspi2
         spibus: 1
         spiaddress: 1
     "22": 
         pca_address: 0xb
-        uart_a: uart1
-        tty_a:  ttymxc0
-        uart_b: uart2
-        tty_b:  ttymxc1
+        uart_a: uart2
+        tty_a:  ttymxc1
+        uart_b: uart1
+        tty_b:  ttymxc0
         spichip: ecspi4
         spibus: 3
         spiaddress: 2
@@ -117,6 +117,11 @@ board:
     IC_AccGyro_1:
         template: ic-accgyro-1.template
         udev: ic-accgyro-1.template.rules
+        slot: [ 12, 22, 21, 11 ]
+
+    IC_IQRF_1:
+        template: ic-iqrf-1.template
+        udev: ic-iqrf-1.template.rules
         slot: [ 12, 22, 21, 11 ]
 
     IC_AiF2Ao1_1:    104
