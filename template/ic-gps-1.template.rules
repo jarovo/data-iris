@@ -1,5 +1,5 @@
 
-ACTION=="add|remove", SUBSYSTEM=="tty", DEVPATH=="*/tty/{{tty_a}}", RUN+="/opt/unipi/tools/uhelper gps tty {{slot}} $name"
+ACTION=="add|remove", SUBSYSTEM=="tty", DEVPATH=="*/tty/{{tty_b}}", RUN+="/opt/unipi/tools/uhelper gps tty {{slot}} $name"
 
 ACTION=="add|remove", SUBSYSTEM=="leds", DEVPATH=="*/gpsleds/leds/unipi-led-gps-{{slot}}-user",  RUN+="/opt/unipi/tools/uhelper gps led.user {{slot}} $name"
 
