@@ -9,7 +9,7 @@
 		__overlay__ {
 			#address-cells = <1>;
 			#size-cells = <0>;
-			gpio_slot1: pca9501@{{pca_address}} {
+			gpio_iqrf: pca9501@{{pca_address}} {
 				compatible = "nxp,pcf8574";
 				gpio-controller;
 				#gpio-cells = <2>;
@@ -33,8 +33,8 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 
-			spidev_icg: spi@{{spiaddress}} {
-				compatible = "nanopi,spidev";
+			spidev_iqrf: spi@{{spiaddress}} {
+				compatible = "rohm,dh2228fv";
 				reg = <{{spiaddress}}>;
 				status = "okay";
 				spi-max-frequency = <8000000>;
@@ -53,16 +53,16 @@
 	fragment@4 {
 		target-path = "/";
 		__overlay__ {
-			iqrfleds {
-				compatible = "gpio-{{slot}}-ledr";
+			led_slot{{slot}} {
+				compatible = "gpio-leds";
 				iqrf-led@1 {
 					label = "iqrf-{{slot}}-ledr";
-					gpios = <&gpio_slot1 2 1>;
+					gpios = <&gpio_iqrf 2 1>;
 					default-state = "off";
 				};
-				gw-led@2 {
+				iqrf-led@2 {
 					label = "iqrf-{{slot}}-ledg";
-					gpios = <&gpio_slot1 3 1>;
+					gpios = <&gpio_iqrf 3 1>;
 					default-state = "off";
 				};
 			};
