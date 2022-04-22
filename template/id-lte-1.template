@@ -28,13 +28,33 @@
 			led_slot{{slot}} {
 				compatible = "gpio-leds";
 				lte-led@1 {
-					label = "lte-{{slot}}-sig";
+					label = "lte-{{slot}}-sig-r";
 					gpios = <&gpio_slot{{slot}} 2 1>;
 					default-state = "off";
 				};
 				lte-led@2 {
-					label = "lte-{{slot}}-int";
+					label = "lte-{{slot}}-sig-g";
 					gpios = <&gpio_slot{{slot}} 3 1>;
+					default-state = "off";
+				};
+				lte-led@3 {
+					label = "lte-{{slot}}-sig-b";
+					gpios = <&gpio_slot{{slot}} 4 1>;
+					default-state = "off";
+				};
+				lte-led@4 {
+					label = "lte-{{slot}}-int-r";
+					gpios = <&gpio_slot{{slot}} 5 1>;
+					default-state = "off";
+				};
+				lte-led@5 {
+					label = "lte-{{slot}}-int-g";
+					gpios = <&gpio_slot{{slot}} 6 1>;
+					default-state = "off";
+				};
+				lte-led@6 {
+					label = "lte-{{slot}}-int-b";
+					gpios = <&gpio_slot{{slot}} 7 1>;
 					default-state = "off";
 				};
 			};
