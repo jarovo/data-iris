@@ -69,70 +69,124 @@ product:
 
 board:
     IC_DiS4_1:
-        template: ic-dis4-1.template
-        slot: [ 11, 12, 21, 22, 32, 42, 52 ]
+        template:              ic-dis4-1.template
+        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
+        ee_name:               DiS41
+        ee_type:               exp
+        has_unipi_fw:          true
+
+    IC_Do8_1:
+        ee_name:               Do81
+        has_unipi_fw:          true
+
 
     IC_LoRaNode_1:
-        template: ic-loranode-1.template
-        slot: [ 11, 12, 21, 22 ]
-        uart: [ "uart_b" ]
+        template:              ic-loranode-1.template
+        slot:                  [ 11, 12, 21, 22 ]
+        uart:                  [ "uart_b" ]
+        ee_name:               LoRaN1
+        ee_type:               exp
 
-    IC_Light1P_1:
-        template: ic-light1p-1.template
-        slot: [ 11, 12, 21, 22, 32, 42, 52 ]
 
-    IC_R485x2R422_1:
-        template: ic-r485x2r422-1.template
-        udev: ic-r485x2r422-1.template.rules
-        slot: [ 11, 12, 21, 22 ]
-        uart: [ "uart_a", "uart_b" ]
+    IC_Light1P80_1:
+        template:              ic-light1p-1.template
+        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
+        ee_name:               LGHP81
+        has_unipi_fw:          true
 
-    IC_R232x1_1:
-        template: ic-r232x1-1.template
-        slot: [ 11, 12, 21, 22 ]
-        uart: [ "uart_b" ]
 
-    IC_AiUC8_1:
-        template: ic-aiuc8-1.template
-        slot: [ 11, 12, 21, 22, 32, 42, 52 ]
+    IC_R485R485422_1:
+        template:              ic-r485x2r422-1.template
+        udev:                  ic-r485x2r422-1.template.rules
+        slot:                  [ 11, 12, 21, 22 ]
+        uart:                  [ "uart_a", "uart_b" ]
+        ee_name:               R485221
 
-    IC_USBSATA_1:
-        #template: id-usbsata-1.template
-        slot: [ 12, 22, 32, 42 ]
-        usb: 1
+    IC_R232_1:
+        template:              ic-r232x1-1.template
+        slot:                  [ 11, 12, 21, 22 ]
+        uart:                  [ "uart_b" ]
+        ee_name:               R2321
+
+    ID_AiUC8_1:
+        template:              ic-aiuc8-1.template
+        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
+        has_unipi_fw:          true
+        ee_name:               AiUC81
+
+    ID_SATA_1:
+        #template:             id-usbsata-1.template
+        slot:                  [ 12, 22, 32, 42 ]
+        usb:                   1
+        ee_name:               USATA1
 
     ID_LTE_1:
-        template: id-lte-1.template
-        udev: id-lte-1.template.rules
-        slot: [ 12, 22, 32, 42 ]
-        usb: 1
+        template:              id-lte-1.template
+        udev:                  id-lte-1.template.rules
+        slot:                  [ 12, 22, 32, 42 ]
+        usb:                   1
         options:
-            has_lte: 1
+            has_lte:           1
+        power:                 [ 24 ]
+        ee_name:               LTE1
+        gpio_exp:              true
 
     IC_GPS_1:
-        template: ic-gps-1.template
-        udev: ic-gps-1.template.rules
-        slot: [ 12, 22, 21, 11 ]
+        template:              ic-gps-1.template
+        udev:                  ic-gps-1.template.rules
+        slot:                  [ 12, 22, 21, 11 ]
+        ee_name:               GPS1
 
     IC_AccGyro_1:
-        template: ic-accgyro-1.template
-        udev: ic-accgyro-1.template.rules
-        slot: [ 12, 22, 21, 11 ]
+        template:              ic-accgyro-1.template
+        udev:                  ic-accgyro-1.template.rules
+        slot:                  [ 12, 22, 21, 11 ]
+        ee_name:               AccGyr
+        ee_type:               exp
+
+    IC_AiF2Ao1_1:
+        ee_name:               Ai2Ao1
+
+    IC_DiS2Do2_1:
+        ee_name:               Di2o21
+
+    IC_AoU4_1:
+        ee_name:               AoU41
+
+    ID_AiRTD8_1:
+        ee_name:               RTD81
+
+    ID_DiS8_1:
+        ee_name:               DiS81
+
+    IC_CANFD_1:
+        ee_name:               CANFD1
+
+    IC_Eth100_1:
+        slot:                  [ 12, 22, 32, 42 ]
+        ee_name:               ETH101
+
+    IC_Di1Ro2_1:
+        ee_name:               Di1R21
+        has_unipi_fw:          true
+
+    ID_DiS16_1:
+        ee_name:               DiS161
+        has_unipi_fw:          true
+
+    ID_Do16_1:
+        ee_name:               Do161
+        has_unipi_fw:          true
+
+    ID_R232x4_1:
+        ee_name:               R23241
+
+    ID_AiUC8_2:
+        ee_name:               AiUC82
+        has_unipi_fw:          true
 
     IC_IQRF_1:
-        template: ic-iqrf-1.template
-        udev: ic-iqrf-1.template.rules
-        slot: [ 12, 22, 21, 11 ]
-
-    IC_Light1P_1:
-        template: ic-light1p-1.template
-        slot: [ 11, 12, 21, 22, 32, 42, 52 ]
-
-    IC_AiF2Ao1_1:    104
-    IC_DiS2Do2_1:    105
-    IC_AoU4_1:       107
-    IC_AiRTD8_1:     109
-    IC_DiS8_1:       110
-    IC_Do8_1:        111
-    IC_CANFD_1:      112
-    IC_Eth100_1:     113
+        template:              ic-iqrf-1.template
+        udev:                  ic-iqrf-1.template.rules
+        slot:                  [ 12, 22, 21, 11 ]
+        ee_name:               IQRF1
