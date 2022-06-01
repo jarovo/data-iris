@@ -184,6 +184,8 @@ board:
         ee_name:               R23241
 
     ID_AiUC8_2:
+        template:              id-aiuc8-2.template
+        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
         ee_name:               AiUC82
         has_unipi_fw:          true
 
