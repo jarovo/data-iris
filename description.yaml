@@ -167,6 +167,8 @@ board:
         ee_name:               ETH101
 
     IC_Di1Ro2_1:
+        template:              ic-di1ro2-1.template
+        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
         ee_name:               Di1R21
         has_unipi_fw:          true
 
