@@ -72,24 +72,28 @@ board:
         template:              ic-dis4-1.template
         slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
         ee_name:               DiS41
-        fw_id:                 25
-        gpio_exp:              true
+        ee_type:               exp
+        has_unipi_fw:          true
 
     IC_Do8_1:
         ee_name:               Do81
+        has_unipi_fw:          true
+
 
     IC_LoRaNode_1:
         template:              ic-loranode-1.template
         slot:                  [ 11, 12, 21, 22 ]
         uart:                  [ "uart_b" ]
         ee_name:               LoRaN1
+        ee_type:               exp
+
 
     IC_Light1P80_1:
         template:              ic-light1p-1.template
         slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
-        model:                 102
         ee_name:               LGHP81
-        fw_id:                 26
+        has_unipi_fw:          true
+
 
     IC_R485R485422_1:
         template:              ic-r485x2r422-1.template
@@ -107,7 +111,7 @@ board:
     ID_AiUC8_1:
         template:              ic-aiuc8-1.template
         slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
-        fw_id:                 27
+        has_unipi_fw:          true
         ee_name:               AiUC81
 
     ID_SATA_1:
@@ -125,6 +129,7 @@ board:
             has_lte:           1
         power:                 [ 24 ]
         ee_name:               LTE1
+        gpio_exp:              true
 
     IC_GPS_1:
         template:              ic-gps-1.template
@@ -137,6 +142,7 @@ board:
         udev:                  ic-accgyro-1.template.rules
         slot:                  [ 12, 22, 21, 11 ]
         ee_name:               AccGyr
+        ee_type:               exp
 
     IC_AiF2Ao1_1:
         ee_name:               Ai2Ao1
@@ -162,23 +168,25 @@ board:
 
     IC_Di1Ro2_1:
         ee_name:               Di1R21
+        has_unipi_fw:          true
 
     ID_DiS16_1:
         ee_name:               DiS161
+        has_unipi_fw:          true
 
     ID_Do16_1:
         ee_name:               Do161
+        has_unipi_fw:          true
 
     ID_R232x4_1:
         ee_name:               R23241
 
     ID_AiUC8_2:
         ee_name:               AiUC82
+        has_unipi_fw:          true
 
     IC_IQRF_1:
         template:              ic-iqrf-1.template
         udev:                  ic-iqrf-1.template.rules
         slot:                  [ 12, 22, 21, 11 ]
         ee_name:               IQRF1
-
-
