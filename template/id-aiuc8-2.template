@@ -30,9 +30,6 @@
 					ai-count = <8>;
 					ai-value-reg = <0>;
 					ai-mode-reg = <1010>;
-					ao-count = <0>;
-					ao-value-reg = <0>;
-					ao-mode-reg = <1010>;
 				};
 			};
 		};
