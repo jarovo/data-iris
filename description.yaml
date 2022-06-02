@@ -181,7 +181,11 @@ board:
         has_unipi_fw:          true
 
     ID_R232x4_1:
+        udev:                  id-r232x4-1.template.rules
+        slot:                  [ 12, 22, 32, 42 ]
         ee_name:               R23241
+        usb:                   1
+
 
     ID_AiUC8_2:
         template:              id-aiuc8-2.template
