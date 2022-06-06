@@ -115,7 +115,7 @@ board:
         ee_name:               AiUC81
 
     ID_SATA_1:
-        #template:             id-usbsata-1.template
+        udev:                  id-sata-1.template.rules
         slot:                  [ 12, 22, 32, 42 ]
         usb:                   1
         ee_name:               USATA1
