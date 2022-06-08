@@ -72,7 +72,7 @@ board:
         template:              ic-dis4-1.template
         slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
         ee_name:               DiS41
-        ee_type:               exp
+        #ee_type:               exp
         has_unipi_fw:          true
 
     IC_Do8_1:
@@ -107,6 +107,8 @@ board:
         slot:                  [ 11, 12, 21, 22 ]
         uart:                  [ "uart_b" ]
         ee_name:               R2321
+        ee_type:               exp
+
 
     ID_AiUC8_1:
         template:              ic-aiuc8-1.template
@@ -129,7 +131,7 @@ board:
             has_lte:           1
         power:                 [ 24 ]
         ee_name:               LTE1
-        gpio_exp:              true
+        ee_type:               exp
 
     IC_GPS_1:
         template:              ic-gps-1.template
@@ -149,9 +151,14 @@ board:
 
     IC_DiS2Do2_1:
         ee_name:               Di2o21
+        template:              ic-dis2do2-1.template
+        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
+        has_unipi_fw:          true
 
     IC_AoU4_1:
         ee_name:               AoU41
+        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
+        has_unipi_fw:          true
 
     ID_AiRTD8_1:
         ee_name:               RTD81
