@@ -1,0 +1,5 @@
+# Direct connect
+ACTION=="add|remove", SUBSYSTEM=="block", DEVPATH=="*ci_hdrc.0/usb1/1-1/1-1:1.0/*",  RUN+="/opt/unipi/tools/uhelper sata.storage $name {{slot}}"
+
+# Connect via backplane USB hub
+ACTION=="add|remove", SUBSYSTEM=="block", DEVPATH=="*ci_hdrc.0/usb1/1-1/1-1.{{usbport}}/1-1.{{usbport}}:1.0/*",  RUN+="/opt/unipi/tools/uhelper sata.storage $name {{slot}}"

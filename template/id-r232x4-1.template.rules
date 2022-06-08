@@ -1,0 +1,14 @@
+
+# Direct connect
+ACTION=="add|remove", SUBSYSTEM=="tty", DEVPATH=="*ci_hdrc.0/usb1/1-1/1-1.2/1-1.2:1.2/tty*",  RUN+="/opt/unipi/tools/uhelper rs232x4 tty1 {{slot}} $name"
+ACTION=="add|remove", SUBSYSTEM=="tty", DEVPATH=="*ci_hdrc.0/usb1/1-1/1-1.2/1-1.2:1.0/tty*",  RUN+="/opt/unipi/tools/uhelper rs232x4 tty2 {{slot}} $name"
+ACTION=="add|remove", SUBSYSTEM=="tty", DEVPATH=="*ci_hdrc.0/usb1/1-1/1-1.1/1-1.1:1.2/tty*",  RUN+="/opt/unipi/tools/uhelper rs232x4 tty3 {{slot}} $name"
+ACTION=="add|remove", SUBSYSTEM=="tty", DEVPATH=="*ci_hdrc.0/usb1/1-1/1-1.1/1-1.1:1.0/tty*",  RUN+="/opt/unipi/tools/uhelper rs232x4 tty4 {{slot}} $name"
+
+# Connected via USB hub (on bigger backplanes)
+ACTION=="add|remove", SUBSYSTEM=="tty", DEVPATH=="*ci_hdrc.0/usb1/1-1/1-1.{{usbport}}/1-1.{{usbport}}.2/1-1.{{usbport}}.2:1.2/tty*",  RUN+="/opt/unipi/tools/uhelper rs232x4 tty1 {{slot}} $name"
+ACTION=="add|remove", SUBSYSTEM=="tty", DEVPATH=="*ci_hdrc.0/usb1/1-1/1-1.{{usbport}}/1-1.{{usbport}}.2/1-1.{{usbport}}.2:1.0/tty*",  RUN+="/opt/unipi/tools/uhelper rs232x4 tty2 {{slot}} $name"
+ACTION=="add|remove", SUBSYSTEM=="tty", DEVPATH=="*ci_hdrc.0/usb1/1-1/1-1.{{usbport}}/1-1.{{usbport}}.1/1-1.{{usbport}}.1:1.2/tty*",  RUN+="/opt/unipi/tools/uhelper rs232x4 tty3 {{slot}} $name"
+ACTION=="add|remove", SUBSYSTEM=="tty", DEVPATH=="*ci_hdrc.0/usb1/1-1/1-1.{{usbport}}/1-1.{{usbport}}.1/1-1.{{usbport}}.1:1.0/tty*",  RUN+="/opt/unipi/tools/uhelper rs232x4 tty4 {{slot}} $name"
+
+
