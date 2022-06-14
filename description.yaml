@@ -96,14 +96,14 @@ board:
 
 
     IC_R485R485422_1:
-        template:              ic-r485x2r422-1.template
-        udev:                  ic-r485x2r422-1.template.rules
+        template:              ic-r485r485422-1.template
+        udev:                  ic-r485r485422-1.template.rules
         slot:                  [ 11, 12, 21, 22 ]
         uart:                  [ "uart_a", "uart_b" ]
         ee_name:               R485221
 
     IC_R232_1:
-        template:              ic-r232x1-1.template
+        template:              ic-r232-1.template
         slot:                  [ 11, 12, 21, 22 ]
         uart:                  [ "uart_b" ]
         ee_name:               R2321
