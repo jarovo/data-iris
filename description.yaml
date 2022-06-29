@@ -104,6 +104,7 @@ board:
 
     IC_R232_1:
         template:              ic-r232-1.template
+        udev:                  ic-r232-1.template.rules
         slot:                  [ 11, 12, 21, 22 ]
         uart:                  [ "uart_b" ]
         ee_name:               R2321
