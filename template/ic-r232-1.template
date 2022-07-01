@@ -9,7 +9,7 @@
 	};
 
 	fragment@3 {
-		{{ m.uart(uart_a) }}
+		{{ m.uart(uart_b) }}
 	};
 
 	fragment@4 {
@@ -21,12 +21,12 @@
 					label = "unipi-led{{slot}}-rx";
 					gpios = <&gpio_slot{{slot}} 0 1>;
 					default-state = "off";
-					linux,default-trigger = "{{tty_a}}-rx";
+					linux,default-trigger = "{{tty_b}}-rx";
 				};
 				uart-led@1 {
 					label = "unipi-led{{slot}}-tx";
 					gpios = <&gpio_slot{{slot}} 1 1>;
-					linux,default-trigger = "{{tty_a}}-tx";
+					linux,default-trigger = "{{tty_b}}-tx";
 					default-state = "off";
 				};
 			};
