@@ -43,24 +43,5 @@
 			};
 		};
 	};
-
-/*
-	fragment@4 {
-		target-path = "/";
-		__overlay__ {
-			gpio-keys{{slot}} {
-				compatible = "gpio-keys-polled";
-				poll-interval = <50>;
-				sw485 {
-					label = "sw-{{slot}}-rs485";
-					gpios = <&gpio_di{{slot}} 1 0>;
-					linux,code = <1>;
-					linux,input-type = <5>; //<EV_SW>;
- 					debounce-interval = <50>;
-				};
-			};
-		}; 
-	};
-*/
 };
 
