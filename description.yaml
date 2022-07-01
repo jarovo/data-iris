@@ -17,9 +17,9 @@ slot:
         tty_a:  ttymxc1
         uart_b: uart1
         tty_b:  ttymxc0
-        spichip: ecspi4
-        spibus: 3
-        spiaddress: 1
+        spichip: ecspi3
+        spibus: 2
+        spiaddress: 0
         usbport: 1
     "21": 
         pca_address: 0xa
@@ -36,27 +36,27 @@ slot:
         tty_a:  ttymxc1
         uart_b: uart1
         tty_b:  ttymxc0
-        spichip: ecspi4
-        spibus: 3
-        spiaddress: 2
+        spichip: ecspi3
+        spibus: 2
+        spiaddress: 1
         usbport: 2
     "32": 
         pca_address: 0xc
-        spichip: ecspi4
-        spibus: 3
-        spiaddress: 3
+        spichip: ecspi3
+        spibus: 2
+        spiaddress: 2
         usbport: 3
     "42": 
         pca_address: 0xd
-        spichip: ecspi4
-        spibus: 3
-        spiaddress: 4
+        spichip: ecspi3
+        spibus: 2
+        spiaddress: 3
         usbport: 4
     "52": 
         pca_address: 0xe
-        spichip: ecspi4
-        spibus: 3
-        spiaddress: 5
+        spichip: ecspi3
+        spibus: 2
+        spiaddress: 4
 
 
 product:
@@ -70,9 +70,9 @@ product:
 board:
     IC_DiS4_1:
         template:              ic-dis4-1.template
+        udev:                  iogroup.template.rules
         slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
         ee_name:               DiS41
-        ee_type:               exp
         has_unipi_fw:          true
 
     IC_Do8_1:
@@ -90,6 +90,7 @@ board:
 
     IC_Light1P80_1:
         template:              ic-light1p-1.template
+        udev:                  iogroup.template.rules
         slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
         ee_name:               LGHP81
         has_unipi_fw:          true
@@ -109,7 +110,8 @@ board:
         ee_name:               R2321
 
     ID_AiUC8_1:
-        template:              ic-aiuc8-1.template
+        template:              id-aiuc8-1.template
+        udev:                  iogroup.template.rules
         slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
         has_unipi_fw:          true
         ee_name:               AiUC81
@@ -148,7 +150,11 @@ board:
         ee_name:               Ai2Ao1
 
     IC_DiS2Do2_1:
+        template:              ic-dis2do2-1.template
+        udev:                  iogroup.template.rules
+        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
         ee_name:               Di2o21
+        has_unipi_fw:          true
 
     IC_AoU4_1:
         ee_name:               AoU41
@@ -168,11 +174,15 @@ board:
 
     IC_Di1Ro2_1:
         template:              ic-di1ro2-1.template
+        udev:                  iogroup.template.rules
         slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
         ee_name:               Di1R21
         has_unipi_fw:          true
 
     ID_DiS16_1:
+        template:              id-dis16-1.template
+        udev:                  iogroup.template.rules
+        slot:                  [ 12, 22, 32, 42, 52 ]
         ee_name:               DiS161
         has_unipi_fw:          true
 
@@ -189,7 +199,8 @@ board:
 
     ID_AiUC8_2:
         template:              id-aiuc8-2.template
-        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
+        udev:                  iogroup.template.rules
+        slot:                  [ 12, 22, 32, 42, 52 ]
         ee_name:               AiUC82
         has_unipi_fw:          true
 

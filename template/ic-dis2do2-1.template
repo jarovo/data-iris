@@ -1,0 +1,66 @@
+/dts-v1/;
+{% import 'unipispi.macro' as m  %}
+
+/plugin/;
+
+/ {
+	fragment@1 {
+		{{ m.unipispi(slot, spichip, spiaddress) }}
+	};
+
+	fragment@2 {
+		target = <&unipispi{{slot}}>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			iogroup{{slot}} {
+				reg = <{{slot}}>;
+				compatible = "unipi,unipi-mfd", "iogroup";
+				core {
+					fw_variant = <0x2800>;
+					fw_name = "IC-DiS2Do2-1";
+					board_name = "IC-DiS2Do2-1";
+					sys_board_name = "DiS2Do2";
+					cycle_counter = <1012>;
+					master_watchdog_enable = <2>;
+				};
+				gpio_di{{slot}}:di {
+					compatible = "unipi,gpio-di";
+					gpio-controller;
+					#gpio-cells = <2>;
+					gpio-line-names = "DI{{slot}}_1", "DI{{slot}}_2";
+					ngpio = <2>;
+					value-reg = <0>;
+					debounce-reg = <1010>;
+					counter-reg = <3>;
+				};
+				do {
+					compatible = "unipi,gpio-do";
+					ngpio = <2>;
+					value-coil = <0>;
+				};
+			};
+		};
+	};
+
+/*
+	fragment@4 {
+		target-path = "/";
+		__overlay__ {
+			gpio-keys{{slot}} {
+				compatible = "gpio-keys-polled";
+				poll-interval = <50>;
+				sw485 {
+					label = "sw-{{slot}}-rs485";
+					gpios = <&gpio_di{{slot}} 1 0>;
+					linux,code = <1>;
+					linux,input-type = <5>; //<EV_SW>;
+ 					debounce-interval = <50>;
+				};
+			};
+		}; 
+	};
+*/
+};
+
