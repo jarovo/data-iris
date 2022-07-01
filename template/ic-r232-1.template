@@ -9,7 +9,7 @@
 	};
 
 	fragment@3 {
-		{{ m.uart(uart_a) }}
+		{{ m.uart(uart_b) }}
 	};
 
 	fragment@4 {
