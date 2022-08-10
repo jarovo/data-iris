@@ -11,6 +11,7 @@
 				status = "okay";
 				spi-max-frequency = <{{ speed | default(12000000) }}>;
 				modbus-address = <{{slot}}>;
+				neuron-board-index = <{{spiaddress}}>;
 			};
 		};
 {% endmacro %}
