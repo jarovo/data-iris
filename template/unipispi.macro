@@ -54,3 +54,26 @@
 			};
 		};
 {%- endmacro %}
+
+
+{% macro slot_irq(irq) %}
+				pinctrl-names = "default";
+				pinctrl-0 = <&pinctrl_slotirq{{irq}}>;
+				{%  if irq == 0 -%}
+				interrupt-parent = <&gpio5>;
+				interrupts = <20 IRQ_TYPE_EDGE_RISING>;
+				{%- endif -%}
+				{%  if irq == 1 -%}
+				interrupt-parent = <&gpio5>;
+				interrupts = <21 IRQ_TYPE_EDGE_RISING>;
+				{%- endif -%}
+				{%  if irq == 2 -%}
+				interrupt-parent = <&gpio4>;
+				interrupts = <23 IRQ_TYPE_EDGE_RISING>;
+				{%- endif -%}
+				{%  if irq == 3 -%}
+				interrupt-parent = <&gpio4>;
+				interrupts = <28 IRQ_TYPE_EDGE_RISING>;
+				{%- endif -%}
+{%- endmacro %}
+

@@ -11,6 +11,7 @@ slot:
         spichip: ecspi2
         spibus: 1
         spiaddress: 0
+        irq: 0
     "12": 
         pca_address: 0x8
         uart_a: uart2
@@ -20,6 +21,7 @@ slot:
         spichip: ecspi3
         spibus: 2
         spiaddress: 0
+        irq: 1
         usbport: 1
     "21": 
         pca_address: 0xa
@@ -30,6 +32,7 @@ slot:
         spichip: ecspi2
         spibus: 1
         spiaddress: 1
+        irq: 2
     "22": 
         pca_address: 0xb
         uart_a: uart2
@@ -39,24 +42,28 @@ slot:
         spichip: ecspi3
         spibus: 2
         spiaddress: 1
+        irq: 3
         usbport: 2
     "32": 
         pca_address: 0xc
         spichip: ecspi3
         spibus: 2
         spiaddress: 2
+        irq: 2
         usbport: 3
     "42": 
         pca_address: 0xd
         spichip: ecspi3
         spibus: 2
         spiaddress: 3
+        irq: 3
         usbport: 4
     "52": 
         pca_address: 0xe
         spichip: ecspi3
         spibus: 2
         spiaddress: 4
+        irq: 3
 
 
 product:
