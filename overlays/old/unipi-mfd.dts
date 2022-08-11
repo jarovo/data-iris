@@ -1,0 +1,71 @@
+/dts-v1/;
+
+
+/plugin/;
+
+/ {
+	fragment@0 {
+		target = <&unipi_plc1>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			dali_2: iogroup12 {
+				reg = <12>;
+				compatible = "unipi,regmap-group";
+				unipispi= <&unipispi1>;
+				core {
+					fw_variant = <0x1a00>;
+					fw_name = "IS-DALI1";
+					board_name = "IS-DALI1";
+					cycle_counter = <1010>;
+					master_watchdog_enable = <5>;
+				};
+				di {
+					compatible = "unipi,gpio-di";
+					ngpio = <4>;
+					value-reg = <0>;
+					debounce-reg = <1009>;
+					counter-reg = <8>;
+				};
+				do {
+					compatible = "unipi,gpio-do";
+					ngpio = <6>;
+					value-coil = <0>;
+					gpio-controller;
+					//#gpio-cells = <2>;
+					gpio-line-names = "DO1.1","DO1.2","DO1.3","DO1.4","DO1.5","DO1.6";
+				};
+				uleds {
+					#address-cells = <1>;
+					#size-cells = <0>;
+					compatible = "unipi,leds";
+					coil-range = <1 4>;
+					label-pefix = "unipi:green:uled-x";
+					led@1 {
+						reg = <1>;
+						label = "test-led";
+					};
+				};
+/*
+				iio_chip {
+					compatible = "unipi,aio";
+					ai-count = <4>;
+					ai-value-reg = <2>;
+					ai-mode-reg = <1010>;
+					ao-count = <4>;
+					ao-value-reg = <10>;
+					ao-mode-reg = <1014>;
+				};
+*/
+				iio_legacy {
+					compatible = "unipi,aio_legacy";
+				};
+				uarts {
+					compatible = "unipi,uart";
+					port-count = <2>;
+				};
+			};
+		};
+	};
+};
