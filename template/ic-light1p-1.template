@@ -21,7 +21,7 @@
 				reg = <{{slot}}>;
 				compatible = "unipi,unipi-mfd", "iogroup";
 				core {
-					fw_variant = <0x1A00>;
+					fw_variant = <0x1A10>;
 					fw_name = "IC-Light1P-1";
 					board_name = "IC-Light1P-1";
 					cycle_counter = <1026>;

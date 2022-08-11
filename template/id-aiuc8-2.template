@@ -18,7 +18,7 @@
 				reg = <{{slot}}>;
 				compatible = "unipi,unipi-mfd", "iogroup";
 				core {
-					fw_variant = <0x2500>;
+					fw_variant = <0x2520>;
 					fw_name = "ID-AiUC8-2";
 					cycle_counter = <1022>;
 					master_watchdog_enable = <16>;
