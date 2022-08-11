@@ -68,11 +68,17 @@ product:
         template: irisx5.template
 
 board:
+    IC_DiS4_0:
+        template:              ic-dis4-1.template
+        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
+        ee_name:               DiS40
+        ee_type:               exp
+        has_unipi_fw:          true
+
     IC_DiS4_1:
         template:              ic-dis4-1.template
         slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
         ee_name:               DiS41
-        #ee_type:               exp
         has_unipi_fw:          true
 
     IC_Do8_1:
@@ -100,7 +106,8 @@ board:
         udev:                  ic-r485x2r422-1.template.rules
         slot:                  [ 11, 12, 21, 22 ]
         uart:                  [ "uart_a", "uart_b" ]
-        ee_name:               R485221
+        ee_name:               R48521
+        ee_type:               exp
 
     IC_R232_1:
         template:              ic-r232x1-1.template
