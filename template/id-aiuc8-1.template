@@ -1,0 +1,38 @@
+/dts-v1/;
+{% import 'unipispi.macro' as m  %}
+
+/plugin/;
+
+/ {
+	fragment@1 {
+		{{ m.unipispi(slot, spichip, spiaddress) }}
+	};
+
+	fragment@2 {
+		target = <&unipispi{{slot}}>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			iogroup{{slot}} {
+				reg = <{{slot}}>;
+				compatible = "unipi,unipi-mfd", "iogroup";
+				core {
+					fw_variant = <0x1b00>;
+					fw_name = "ID-8Ai";
+					board_name = "ID-8Ai";
+					cycle_counter = <1022>;
+					master_watchdog_enable = <16>;
+				};
+
+				ai_chip {
+					compatible = "unipi,ai";
+					io-count = <8>;
+					io-value-reg = <0>;
+					io-mode-reg = <1010>;
+				};
+			};
+		};
+	};
+};
+

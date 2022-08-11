@@ -1,0 +1,41 @@
+/dts-v1/;
+{% import 'unipispi.macro' as m  %}
+
+/plugin/;
+
+/ {
+	fragment@1 {
+                target = <&i2c3>;  
+                __overlay__ {
+                        #address-cells = <1>;
+                        #size-cells = <0>;
+                        gpio_slot{{slot}}: pca9501@{{pca_address}} {
+                                compatible = "nxp,pcf8574";
+                                gpio-controller;
+                                #gpio-cells = <2>;
+                                reg = <{{pca_address}}>;
+                                gpio-line-names = "GPS_nRST",
+                                "GPS_extInt","","","","","","GPS_LED";
+                        };
+                };
+	};
+
+	fragment@3 {
+		{{ m.uart(uart_b) }}
+	};
+
+	fragment@4 {
+		target-path = "/";
+		__overlay__ {
+			gpsleds {
+				compatible = "gpio-leds";
+				gps-led@1 {
+					label = "unipi-led-gps-{{slot}}-user";
+					gpios = <&gpio_slot{{slot}} 7 1>;
+					default-state = "off";
+				};
+			};
+		};
+	}; 
+
+};

@@ -1,0 +1,11 @@
+	fragment@2 {
+		target = <&uart1>;
+		__overlay__ {
+			pinctrl-names = "default";
+			pinctrl-0 = <&pinctrl_uart1>, <&pinctrl_uart1_ctrl>;
+			status = "okay";
+			rts-gpios = <&gpio4 24 0>;
+			linux,rs485-enabled-at-boot-time;
+		};
+	};
+

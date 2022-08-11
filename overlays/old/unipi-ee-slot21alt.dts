@@ -1,0 +1,24 @@
+/dts-v1/;
+
+/plugin/;
+
+/ {
+
+fragment@0 {
+	target = <&i2c3>;
+	__overlay__ {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		unipiid_21: ee_slot@4a {
+			compatible = "24c02";
+			reg = <0x4a>;
+			#address-cells = <1>;
+			#size-cells = <1>;
+			unipi_banks: unipidata@0 {
+				reg = <0x0 0x100>;
+			};
+		};
+	};
+};
+};
+

@@ -1,0 +1,80 @@
+{% macro unipispi(slot, spichip, spiaddress) %}
+		target = <&{{spichip}}>;
+		__overlay__ {
+			status = "okay";
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			unipispi{{slot}}: unipispi@{{spiaddress}} {
+				compatible = "unipispi";
+				reg = <{{spiaddress}}>;
+				status = "okay";
+				spi-max-frequency = <{{ speed | default(12000000) }}>;
+				modbus-address = <{{slot}}>;
+				neuron-board-index = <{{spiaddress}}>;
+			};
+		};
+{% endmacro %}
+
+
+{% macro uart(uartchip) %}
+		target = <&{{uartchip}}>;
+		__overlay__ {
+			status = "okay";
+		};
+{% endmacro %}
+
+
+{% macro uart485(uartchip) %}
+		target = <&{{uartchip}}>;
+		__overlay__ {
+			status = "okay";
+			pinctrl-names = "default";
+			pinctrl-0 = <&pinctrl_{{uartchip}}>, <&pinctrl_{{uartchip}}_ctrl>;
+			linux,rs485-enabled-at-boot-time;
+		{%- if uartchip=="uart1" %}
+			rts-gpios = <&gpio4 24 0>;
+		{%- endif %}
+		{%- if uartchip=="uart2" %}
+			rts-gpios = <&gpio4 29 0>;
+		{%- endif %}
+		};
+{% endmacro %}
+
+
+{% macro i2c_gpio(slot, pca_address) %}
+		target = <&i2c3>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			gpio_slot{{slot}}: pca9501@{{pca_address}} {
+				compatible = "nxp,pcf8574";
+				gpio-controller;
+				#gpio-cells = <2>;
+				reg = <{{pca_address}}>;
+			};
+		};
+{%- endmacro %}
+
+
+{% macro slot_irq(irq) %}
+				pinctrl-names = "default";
+				pinctrl-0 = <&pinctrl_slotirq{{irq}}>;
+				{%  if irq == 0 -%}
+				interrupt-parent = <&gpio5>;
+				interrupts = <20 IRQ_TYPE_EDGE_RISING>;
+				{%- endif -%}
+				{%  if irq == 1 -%}
+				interrupt-parent = <&gpio5>;
+				interrupts = <21 IRQ_TYPE_EDGE_RISING>;
+				{%- endif -%}
+				{%  if irq == 2 -%}
+				interrupt-parent = <&gpio4>;
+				interrupts = <23 IRQ_TYPE_EDGE_RISING>;
+				{%- endif -%}
+				{%  if irq == 3 -%}
+				interrupt-parent = <&gpio4>;
+				interrupts = <28 IRQ_TYPE_EDGE_RISING>;
+				{%- endif -%}
+{%- endmacro %}
+

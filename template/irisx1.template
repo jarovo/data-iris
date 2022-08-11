@@ -1,0 +1,17 @@
+/dts-v1/;
+
+/plugin/;
+
+/ {
+	fragment@1 {
+		target = <&usbotg1>;
+		//target-path = "/soc@0/bus@32c00000/usb@32e40000";
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			usbslot12@1 {
+				reg = <1>;
+			};
+		};
+	}; 
+};

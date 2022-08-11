@@ -1,0 +1,35 @@
+/dts-v1/;
+{% import 'unipispi.macro' as m  %}
+
+/plugin/;
+
+/ {
+	fragment@1 {
+		{{- m.i2c_gpio(slot, pca_address) }}
+	};
+
+	fragment@3 {
+		{{ m.uart(uart_b) }}
+	};
+
+	fragment@4 {
+		target-path = "/";
+		__overlay__ {
+			loraleds {
+				compatible = "gpio-leds";
+				lora-led@0 {
+					label = "unipi-led{{slot}}-tx";
+					gpios = <&gpio_slot{{slot}} 0 1>;
+					default-state = "off";
+					//linux,default-trigger = "{{tty2}}-tx";
+				};
+				lora-led@1 {
+					label = "unipi-led{{slot}}-rx";
+					gpios = <&gpio_slot{{slot}} 1 1>;
+					default-state = "off";
+					//linux,default-trigger = "{{tty2}}-rx";
+				};
+			};
+		};
+	};
+};

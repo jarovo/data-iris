@@ -1,0 +1,9 @@
+
+{% for dts in dtslist -%}
+dtss += {{dts}}
+{% endfor -%}
+
+dtb-y = $(dtss:.dts=.dtb)
+targets  += $(dtb-y)
+always-y += $(dtb-y)
+

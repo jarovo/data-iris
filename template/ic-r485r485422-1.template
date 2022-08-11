@@ -1,0 +1,57 @@
+/dts-v1/;
+{% import 'unipispi.macro' as m  %}
+
+/plugin/;
+
+/ {
+	fragment@1 {
+		{{- m.i2c_gpio(slot, pca_address) }}
+	};
+	fragment@2 {
+		{{ m.uart485(uart_a) }}
+	};
+	fragment@3 {
+		{{ m.uart485(uart_b) }}
+	};
+
+	fragment@4 {
+		target-path = "/";
+		__overlay__ {
+			led_slot{{slot}} {
+				compatible = "gpio-leds";
+				uart-led@0 {
+					label = "rs485-led{{slot}}.aux";
+					gpios = <&gpio_slot{{slot}} 3 1>;
+					default-state = "off";
+					linux,default-trigger = "none";
+				};
+				uart-led@1 {
+					label = "rs485-led{{slot}}.1-tx";
+					gpios = <&gpio_slot{{slot}} 6 1>;
+					default-state = "off";
+					linux,default-trigger = "{{tty_a}}-tx";
+				};
+				uart-led@2 {
+					label = "rs485-led{{slot}}.1-rx";
+					gpios = <&gpio_slot{{slot}} 7 1>;
+					default-state = "off";
+					linux,default-trigger = "{{tty_a}}-rx";
+				};
+				uart-led@3 {
+					label = "rs485-led{{slot}}.2-tx";
+					gpios = <&gpio_slot{{slot}} 4 1>;
+					linux,default-trigger = "{{tty_b}}-tx";
+					default-state = "off";
+				};
+				uart-led@4 {
+					label = "rs485-led{{slot}}.2-rx";
+					gpios = <&gpio_slot{{slot}} 5 1>;
+					default-state = "off";
+					linux,default-trigger = "{{tty_b}}-rx";
+				};
+
+			};
+		};
+	}; 
+
+};
