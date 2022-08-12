@@ -76,7 +76,7 @@ product:
 
 board:
     IC_DiS4_0:
-        template:              ic-dis4-1.template
+        template:              ic-dis4-0.template
         slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
         ee_name:               DiS40
         ee_type:               exp
