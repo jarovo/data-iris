@@ -75,6 +75,13 @@ product:
         template: irisx5.template
 
 board:
+    IC_DiS4_0:
+        template:              ic-dis4-0.template
+        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
+        ee_name:               DiS40
+        ee_type:               exp
+        has_unipi_fw:          true
+
     IC_DiS4_1:
         template:              ic-dis4-1.template
         udev:                  iogroup.template.rules
@@ -108,7 +115,8 @@ board:
         udev:                  ic-r485r485422-1.template.rules
         slot:                  [ 11, 12, 21, 22 ]
         uart:                  [ "uart_a", "uart_b" ]
-        ee_name:               R485221
+        ee_name:               R48521
+        ee_type:               exp
 
     IC_R232_1:
         template:              ic-r232-1.template
@@ -116,6 +124,8 @@ board:
         slot:                  [ 11, 12, 21, 22 ]
         uart:                  [ "uart_b" ]
         ee_name:               R2321
+        ee_type:               exp
+
 
     ID_AiUC8_1:
         template:              id-aiuc8-1.template
@@ -139,7 +149,7 @@ board:
             has_lte:           1
         power:                 [ 24 ]
         ee_name:               LTE1
-        gpio_exp:              true
+        ee_type:               exp
 
     IC_GPS_1:
         template:              ic-gps-1.template
@@ -166,6 +176,8 @@ board:
 
     IC_AoU4_1:
         ee_name:               AoU41
+        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
+        has_unipi_fw:          true
 
     ID_AiRTD8_1:
         ee_name:               RTD81
