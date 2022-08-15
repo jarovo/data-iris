@@ -1,0 +1,5 @@
+ACTION=="add|remove", SUBSYSTEM=="tty", DEVPATH=="*/tty/{{tty_b}}", RUN+="/opt/unipi/tools/uhelper loranode tty {{slot}} $name"
+ACTION=="add|remove", SUBSYSTEM=="gpio", DEVPATH=="*/i2c-2/2-{{ "%04x" % pca_address }}/gpiochip*",  RUN+="/opt/unipi/tools/uhelper loranode gpiochip {{slot}} $name"
+
+ACTION=="add|remove", SUBSYSTEM=="leds", DEVPATH=="*/loraleds/leds/loranode-{{slot}}-tx",  RUN+="/opt/unipi/tools/uhelper loranode led.tx {{slot}} $name"
+ACTION=="add|remove", SUBSYSTEM=="leds", DEVPATH=="*/loraleds/leds/loranode-{{slot}}-rx",  RUN+="/opt/unipi/tools/uhelper loranode led.rx {{slot}} $name"

@@ -96,6 +96,7 @@ board:
 
     IC_LoRaNode_1:
         template:              ic-loranode-1.template
+        udev:                  ic-loranode-1.template.rules
         slot:                  [ 11, 12, 21, 22 ]
         uart:                  [ "uart_b" ]
         ee_name:               LoRaN1
