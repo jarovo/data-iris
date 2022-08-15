@@ -4,8 +4,27 @@
 /plugin/;
 
 / {
-	fragment@1 {
-		{{- m.i2c_gpio(slot, pca_address) }}
+	fragment@0 {
+		target = <&i2c3>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			gpio_loranode{{slot}}: pca9501@{{pca_address}} {
+				compatible = "nxp,pcf8574";
+				gpio-controller;
+				#gpio-cells = <2>;
+				reg = <{{pca_address}}>;
+				lines-initial-states = <0x10>;
+				gpio-line-names = "SLOT{{slot}}_LORANODE_LED1",
+				"SLOT{{slot}}_LORANODE_LED2",
+				"SLOT{{slot}}_LORANODE_CTS",
+				"SLOT{{slot}}_LORANODE_RTS",
+				"SLOT{{slot}}_LORANODE_RESET",
+				"SLOT{{slot}}_LORANODE_BOOT",
+				"",
+				"";
+			};
+		};
 	};
 
 	fragment@3 {
@@ -18,16 +37,16 @@
 			loraleds {
 				compatible = "gpio-leds";
 				lora-led@0 {
-					label = "unipi-led{{slot}}-tx";
-					gpios = <&gpio_slot{{slot}} 0 1>;
+					label = "loranode-{{slot}}-tx";
+					gpios = <&gpio_loranode{{slot}} 0 1>;
 					default-state = "off";
-					//linux,default-trigger = "{{tty2}}-tx";
+					linux,default-trigger = "none";
 				};
 				lora-led@1 {
-					label = "unipi-led{{slot}}-rx";
-					gpios = <&gpio_slot{{slot}} 1 1>;
+					label = "loranode-{{slot}}-rx";
+					gpios = <&gpio_loranode{{slot}} 1 1>;
 					default-state = "off";
-					//linux,default-trigger = "{{tty2}}-rx";
+					linux,default-trigger = "none";
 				};
 			};
 		};
