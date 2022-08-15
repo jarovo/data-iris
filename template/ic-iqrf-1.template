@@ -14,14 +14,14 @@
 				gpio-controller;
 				#gpio-cells = <2>;
 				reg = <{{pca_address}}>;
-				gpio-line-names = "SLOT1_IQRF_BTN",
-					"SLOT1_IQRF_UART_EN",
-					"SLOT1_IQRF_GW_LEDR",
-					"SLOT1_IQRF_GW_LEDG",
-					"SLOT1_IQRF_SPI_EN",
-					"SLOT1_IQRF_I2C_EN",
-					"SLOT1_IQRF_SPI_PGM_EN",
-					"SLOT1_IQRF_TR_PWR_EN";
+				gpio-line-names = "SLOT{{slot}}_IQRF_BTN",
+					"SLOT{{slot}}_IQRF_UART_EN",
+					"SLOT{{slot}}_IQRF_GW_LEDR",
+					"SLOT{{slot}}_IQRF_GW_LEDG",
+					"SLOT{{slot}}_IQRF_SPI_EN",
+					"SLOT{{slot}}_IQRF_I2C_EN",
+					"SLOT{{slot}}_IQRF_SPI_PGM_EN",
+					"SLOT{{slot}}_IQRF_TR_PWR_EN";
 			};
 		};
 	};
