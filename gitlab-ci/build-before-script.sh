@@ -11,4 +11,4 @@ ARCH="$(dpkg-architecture -q DEB_BUILD_ARCH)"
 apt update
 apt upgrade -y
 apt update && apt install -y python3-jinja2 python3-yaml
-apt install -y zulu-kernel-headers
+apt install -y unipi-kernel-headers
