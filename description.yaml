@@ -209,8 +209,11 @@ board:
         has_unipi_fw:          true
 
     ID_Do16_1:
+        template:              id-do16-1.template
         ee_name:               Do161
         has_unipi_fw:          true
+        slot:                  [ 12, 22, 32, 42 ]
+        udev:                  iogroup.template.rules
 
     ID_R232x4_1:
         udev:                  id-r232x4-1.template.rules
