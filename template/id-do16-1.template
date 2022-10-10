@@ -29,7 +29,7 @@
 						compatible = "unipi,gpio-do";
 						gpio-controller;
 						#gpio-cells = <2>;
-						gpio-line-names = "DO{{slot}}_1", "DO{{slot}}_2" , "DO{{slot}}_3", "DO{{slot}}_4", "DO{{slot}}_5", "DO{{slot}}_6", "DO{{slot}}_7", "DO{{slot}}_8", "DO{{slot}}_9", "DO{{slot}}_10", "DO{{slot}}_11", "DO{{slot}}_12", "DO{{slot}}_13", "DO{{slot}}_14", "DO{{slot}}_15", "DO{{slot}}_16"
+						gpio-line-names = "DO{{slot}}_1", "DO{{slot}}_2" , "DO{{slot}}_3", "DO{{slot}}_4", "DO{{slot}}_5", "DO{{slot}}_6", "DO{{slot}}_7", "DO{{slot}}_8", "DO{{slot}}_9", "DO{{slot}}_10", "DO{{slot}}_11", "DO{{slot}}_12", "DO{{slot}}_13", "DO{{slot}}_14", "DO{{slot}}_15", "DO{{slot}}_16";
 						ngpio = <16>;
 						value-coil = <0>;
 					};
