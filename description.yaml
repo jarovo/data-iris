@@ -231,3 +231,10 @@ board:
         udev:                  ic-iqrf-1.template.rules
         slot:                  [ 12, 22, 21, 11 ]
         ee_name:               IQRF1
+
+
+proxy:
+    UNISPI:
+        template:              ic-unispi.template
+        udev:                  iogroup.template.rules
+        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
