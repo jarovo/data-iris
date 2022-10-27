@@ -90,7 +90,7 @@ board:
         ee_name:               DiS41
         has_unipi_fw:          true
 
-    IC_Do8_1:
+    ID_Do8_1:
         ee_name:               Do81
         has_unipi_fw:          true
 
