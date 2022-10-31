@@ -93,6 +93,9 @@ board:
     ID_Do8_1:
         ee_name:               Do81
         has_unipi_fw:          true
+        template:              id-do8-1.template
+        slot:                  [ 12, 22, 32, 42 ]
+        udev:                  iogroup.template.rules
 
 
     IC_LoRaNode_1:
