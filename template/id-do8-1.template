@@ -1,0 +1,41 @@
+/dts-v1/;
+{% import 'unipispi.macro' as m  %}
+
+/plugin/;
+
+/ {
+	fragment@1 {
+		{{ m.unipispi(slot, spichip, spiaddress) }}
+	};
+
+	fragment@2 {
+		target = <&unipispi{{slot}}>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			iogroup1_{{slot}} {
+				reg = <{{slot}}>;
+				compatible = "unipi,unipi-mfd", "iogroup";
+				variant1 { 
+					fw_variant = <0x2e10>;
+					fw_name = "ID-Do8-1";
+					board_name = "ID-Do8-1";
+					sys_board_name = "Do8";
+					cycle_counter = <1012>;
+					master_watchdog_enable = <1>;
+
+					do {
+						compatible = "unipi,gpio-do";
+						gpio-controller;
+						#gpio-cells = <2>;
+						gpio-line-names = "DO{{slot}}_1", "DO{{slot}}_2" , "DO{{slot}}_3", "DO{{slot}}_4", "DO{{slot}}_5", "DO{{slot}}_6", "DO{{slot}}_7", "DO{{slot}}_8";
+						ngpio = <8>;
+						value-coil = <0>;
+					};
+				};
+			};
+		};
+	};
+};
+

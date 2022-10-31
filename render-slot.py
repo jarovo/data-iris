@@ -141,6 +141,17 @@ def gener_by_desc(description, uniee_data, jinjaenv, exporter):
 			for slot in b_desc["slot"]:
 				exporter.add_board(b_id, slot, **b_desc["options"])
 
+	if not "proxy" in description: return
+	for board, b_desc in description["proxy"].items():
+		print("board: ", board, b_desc)
+		prefix = ""
+
+		if not isinstance(b_desc, dict): continue
+		if "template" in b_desc:
+			render_board_dt(board, b_desc, prefix, description, jinjaenv, exporter)
+		if "udev" in b_desc:
+			render_board_udev(board, b_desc, prefix, description, jinjaenv, exporter)
+
 
 def gener_library(jinjaenv, uniee_data, exporter):
 	t = jinjaenv.get_template(name="unipi-values.template.c")
