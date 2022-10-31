@@ -1,0 +1,24 @@
+/dts-v1/;
+{% import 'unipispi.macro' as m  %}
+
+/plugin/;
+
+/ {
+	fragment@1 {
+		{{ m.unipispi(slot, spichip, spiaddress) }}
+	};
+
+	fragment@2 {
+		target = <&unipispi{{slot}}>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			probe-always-succeeds = <1>;
+			iogroup{{slot}} {
+				reg = <{{slot}}>;
+				compatible = "unipi,unipi-mfd", "iogroup";
+			};
+		};
+	};
+};
+
