@@ -241,3 +241,9 @@ board:
         slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
         ee_name:               Ai2Ao1
         has_unipi_fw:          true
+
+proxy:
+    UNISPI:
+        template:              ic-unispi.template
+        udev:                  iogroup.template.rules
+        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
