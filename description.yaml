@@ -262,13 +262,6 @@ board:
         has_unipi_fw:          true
         commercial_id:         IM505
 
-    IC_IQRF_1:
-        template:              ic-iqrf-1.template
-        udev:                  ic-iqrf-1.template.rules
-        slot:                  [ 12, 22, 21, 11 ]
-        ee_name:               IQRF1
-        commercial_id:         IN601
-
     IC_Ai2Ao1_1:
         template:              ic-ai2ao1-1.template
         udev:                  iogroup.template.rules
@@ -276,6 +269,23 @@ board:
         ee_name:               Ai2Ao1
         has_unipi_fw:          true
         commercial_id:         IM506
+
+# ------ OEM AREA ------
+
+    IC_IQRF_1:
+        template:              ic-iqrf-1.template
+        udev:                  ic-iqrf-1.template.rules
+        slot:                  [ 12, 22, 21, 11 ]
+        ee_name:               IQRF1
+        commercial_id:         IN601
+
+    ID_Eth100Di1WiFi_1:
+        template:              id-eth100di1wifi-1.template
+        udev:                  id-eth100di1wifi-1.template.rules
+        slot:                  [ 22 ]
+        commercial_id:         IN801
+
+# ------ OEM AREA END ------
 
 proxy:
     UNISPI:
