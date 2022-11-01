@@ -77,6 +77,7 @@ product:
 board:
     IC_DiS4_0:
         template:              ic-dis4-0.template
+        udev:                  iogroup.template.rules
         slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
         ee_name:               DiS40
         ee_type:               exp
@@ -89,9 +90,12 @@ board:
         ee_name:               DiS41
         has_unipi_fw:          true
 
-    IC_Do8_1:
+    ID_Do8_1:
         ee_name:               Do81
         has_unipi_fw:          true
+        template:              id-do8-1.template
+        slot:                  [ 12, 22, 32, 42 ]
+        udev:                  iogroup.template.rules
 
 
     IC_LoRaNode_1:
@@ -131,7 +135,7 @@ board:
     ID_AiUC8_1:
         template:              id-aiuc8-1.template
         udev:                  iogroup.template.rules
-        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
+        slot:                  [ 12, 22, 32, 42, 52 ]
         has_unipi_fw:          true
         ee_name:               AiUC81
 
@@ -208,8 +212,11 @@ board:
         has_unipi_fw:          true
 
     ID_Do16_1:
+        template:              id-do16-1.template
         ee_name:               Do161
         has_unipi_fw:          true
+        slot:                  [ 12, 22, 32, 42 ]
+        udev:                  iogroup.template.rules
 
     ID_R232x4_1:
         udev:                  id-r232x4-1.template.rules
@@ -230,3 +237,16 @@ board:
         udev:                  ic-iqrf-1.template.rules
         slot:                  [ 12, 22, 21, 11 ]
         ee_name:               IQRF1
+
+    IC_Ai2Ao1_1:
+        template:              ic-ai2ao1-1.template
+        udev:                  iogroup.template.rules
+        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
+        ee_name:               Ai2Ao1
+        has_unipi_fw:          true
+
+proxy:
+    UNISPI:
+        template:              ic-unispi.template
+        udev:                  iogroup.template.rules
+        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
