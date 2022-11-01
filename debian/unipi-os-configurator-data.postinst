@@ -29,8 +29,8 @@ case "$1" in
 
   configure)
 
-    if [ -x /opt/unipi/os-configurator/os-configurator ]; then
-        /opt/unipi/os-configurator/os-configurator --force
+    if [ -x /opt/unipi/tools/os-configurator ]; then
+        /opt/unipi/tools/os-configurator --force
 
     elif [ -e /etc/bootcmd.d/Makefile ]; then
         make -C /etc/bootcmd.d force

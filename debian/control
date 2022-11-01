@@ -11,4 +11,4 @@ Homepage: www.unipi.technology
 Package: unipi-os-configurator-data
 Architecture: any
 Description: Unipi Iris specific data for Unipi OS configurator
-Depends: unipi-os-configurator 
+Depends: unipi-os-configurator (>= 0.8)
