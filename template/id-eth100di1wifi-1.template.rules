@@ -1,0 +1,6 @@
+
+ACTION=="add|remove", SUBSYSTEM=="tty", DEVPATH=="*/tty/{{tty_a}}", RUN+="/opt/unipi/tools/uhelper esp32 tty {{slot}} $name"
+ACTION=="add|remove", SUBSYSTEM=="tty", DEVPATH=="*/tty/{{tty_b}}", RUN+="/opt/unipi/tools/uhelper esp32 tty {{slot}} $name"
+
+ACTION=="add|remove", SUBSYSTEM=="gpio", DEVPATH=="*/i2c-2/2-{{ "%04x" % pca_address }}/gpiochip*",  RUN+="/opt/unipi/tools/uhelper iqrf gpiochip {{slot}} $name"
+
