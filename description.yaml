@@ -182,6 +182,9 @@ board:
 
     IC_AiF2Ao1_1:
         ee_name:               Ai2Ao1
+        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
+        has_unipi_fw:          true
+        commercial_id:         IM501
 
     IC_DiS2Do2_1:
         template:              ic-dis2do2-1.template
@@ -200,16 +203,19 @@ board:
 
     ID_AiRTD8_1:
         ee_name:               RTD81
+        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
         has_unipi_fw:          true
         commercial_id:         IM504
 
     ID_DiS8_1:
         has_unipi_fw:          true
+        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
         ee_name:               DiS81
         commercial_id:         IM202
 
     IC_CANFD_1:
         ee_name:               CANFD1
+        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
         commercial_id:         IM604
 
     IC_Eth100_1:
