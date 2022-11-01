@@ -133,7 +133,7 @@ board:
         uart:                  [ "uart_b" ]
         ee_name:               R2321
         ee_type:               exp
-        commercial_id          IM606
+        commercial_id:         IM606
 
     ID_AiUC8_1:
         template:              id-aiuc8-1.template
@@ -141,14 +141,14 @@ board:
         slot:                  [ 12, 22, 32, 42, 52 ]
         has_unipi_fw:          true
         ee_name:               AiUC81
-        commercial_id          IM503
+        commercial_id:         IM503
 
     ID_SATA_1:
         udev:                  id-sata-1.template.rules
         slot:                  [ 12, 22, 32, 42 ]
         usb:                   1
         ee_name:               USATA1
-        commercial_id          IM801
+        commercial_id:         IM801
 
     ID_LTE_1:
         template:              id-lte-1.template
@@ -160,7 +160,7 @@ board:
         power:                 [ 24 ]
         ee_name:               LTE1
         ee_type:               exp
-        commercial_id          IM607
+        commercial_id:         IM607
 
 
     IC_GPS_1:
@@ -168,7 +168,7 @@ board:
         udev:                  ic-gps-1.template.rules
         slot:                  [ 12, 22, 21, 11 ]
         ee_name:               GPS1
-        commercial_id          IM609
+        commercial_id:         IM609
 
 
     IC_AccGyro_1:
@@ -177,7 +177,7 @@ board:
         slot:                  [ 12, 22, 21, 11 ]
         ee_name:               AccGyr
         ee_type:               exp
-        commercial_id          IM802
+        commercial_id:         IM802
 
 
     IC_AiF2Ao1_1:
@@ -189,33 +189,33 @@ board:
         slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
         ee_name:               Di2o21
         has_unipi_fw:          true
-        commercial_id          IM301
+        commercial_id:         IM301
 
     IC_AoU4_1:
         ee_name:               AoU41
         slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
         has_unipi_fw:          true
-        commercial_id          IM502
+        commercial_id:         IM502
 
 
     ID_AiRTD8_1:
         ee_name:               RTD81
         has_unipi_fw:          true
-        commercial_id          IM504
+        commercial_id:         IM504
 
     ID_DiS8_1:
         has_unipi_fw:          true
         ee_name:               DiS81
-        commercial_id          IM202
+        commercial_id:         IM202
 
     IC_CANFD_1:
         ee_name:               CANFD1
-        commercial_id          IM604
+        commercial_id:         IM604
 
     IC_Eth100_1:
         slot:                  [ 12, 22, 32, 42 ]
         ee_name:               ETH101
-        commercial_id          IM605
+        commercial_id:         IM605
 
     IC_Di1Ro2_1:
         template:              ic-di1ro2-1.template
@@ -223,7 +223,7 @@ board:
         slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
         ee_name:               Di1R21
         has_unipi_fw:          true
-        commercial_id          IM206
+        commercial_id:         IM206
 
     ID_DiS16_1:
         template:              id-dis16-1.template
@@ -231,7 +231,7 @@ board:
         slot:                  [ 12, 22, 32, 42, 52 ]
         ee_name:               DiS161
         has_unipi_fw:          true
-        commercial_id          IM204
+        commercial_id:         IM204
 
     ID_Do16_1:
         template:              id-do16-1.template
@@ -239,14 +239,14 @@ board:
         has_unipi_fw:          true
         slot:                  [ 12, 22, 32, 42 ]
         udev:                  iogroup.template.rules
-        commercial_id          IM205
+        commercial_id:         IM205
 
     ID_R232x4_1:
         udev:                  id-r232x4-1.template.rules
         slot:                  [ 12, 22, 32, 42 ]
         ee_name:               R23241
         usb:                   1
-        commercial_id          IM608
+        commercial_id:         IM608
 
     ID_AiUC8_2:
         template:              id-aiuc8-2.template
@@ -254,14 +254,14 @@ board:
         slot:                  [ 12, 22, 32, 42, 52 ]
         ee_name:               AiUC82
         has_unipi_fw:          true
-        commercial_id          IM505
+        commercial_id:         IM505
 
     IC_IQRF_1:
         template:              ic-iqrf-1.template
         udev:                  ic-iqrf-1.template.rules
         slot:                  [ 12, 22, 21, 11 ]
         ee_name:               IQRF1
-        commercial_id          IN601
+        commercial_id:         IN601
 
     IC_Ai2Ao1_1:
         template:              ic-ai2ao1-1.template
@@ -269,7 +269,7 @@ board:
         slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
         ee_name:               Ai2Ao1
         has_unipi_fw:          true
-        commercial_id          IM506
+        commercial_id:         IM506
 
 proxy:
     UNISPI:
