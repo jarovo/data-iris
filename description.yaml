@@ -73,6 +73,8 @@ product:
         template: irisx2.template
     IRISx5:
         template: irisx5.template
+    IRISx21:
+        template: irisx21.template
 
 board:
     IC_DiS4_0:
