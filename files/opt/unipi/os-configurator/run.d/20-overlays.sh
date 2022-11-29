@@ -12,6 +12,6 @@ dt_dtb_1=$(echo "${DT}" | sed 's/\>/.dtb/g')
 if [ -n "$dt_dtb_1" ]; then
     ( cd /opt/unipi/os-configurator/overlays
       mkdir -p /boot/overlays
-      cp $dt_dtb_1 /boot/overlays/
+      cp $dt_dtb_1 /boot/overlays/ | true
     )
 fi
