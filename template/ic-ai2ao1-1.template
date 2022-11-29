@@ -5,7 +5,7 @@
 
 / {
 	fragment@1 {
-		{{ m.unipispi(slot, spichip, spiaddress) }}
+		{{ m.unipispi(slot, spichip, spiaddress, 6000000) }}
 	};
 
 	fragment@2 {

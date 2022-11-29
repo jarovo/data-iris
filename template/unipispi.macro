@@ -1,4 +1,4 @@
-{% macro unipispi(slot, spichip, spiaddress) %}
+{% macro unipispi(slot, spichip, spiaddress, speed) %}
 		target = <&{{spichip}}>;
 		__overlay__ {
 			status = "okay";
