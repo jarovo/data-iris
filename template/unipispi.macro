@@ -38,6 +38,9 @@
 		{%- if uartchip=="uart2" %}
 			rts-gpios = <&gpio4 29 0>;
 		{%- endif %}
+		{%- if uartchip=="uart4" %}
+			rts-gpios = <&gpio3 20 0>;
+		{%- endif %}
 		};
 {% endmacro %}
 

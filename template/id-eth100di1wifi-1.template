@@ -1,0 +1,37 @@
+/dts-v1/;
+{% import 'unipispi.macro' as m  %}
+
+/plugin/;
+
+/ {
+	fragment@0 {
+		target = <&i2c3>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+			gpio_iqrf: pca9501@{{pca_address}} {
+				compatible = "nxp,pcf8574";
+				gpio-controller;
+				#gpio-cells = <2>;
+				reg = <{{pca_address}}>;
+                lines-initial-states = <0xFF>;
+				gpio-line-names = "",
+					"",
+					"",
+					"SLOT{{slot}}_EXT_DI1",
+					"SLOT{{slot}}_EXT_DI2",
+					"SLOT{{slot}}_BUTTON1",
+					"SLOT{{slot}}_BUTTON2",
+					"SLOT{{slot}}_ESP32_EN";
+			};
+		};
+	};
+
+	fragment@2 {
+		{{ m.uart(uart_a) }}
+	};
+
+	fragment@3 {
+		{{ m.uart(uart_b) }}
+	};
+};
