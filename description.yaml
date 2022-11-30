@@ -204,10 +204,13 @@ board:
 
 
     ID_AiRTD8_1:
+        template:              id-airtd8-1.template
+        udev:                  iogroup.template.rules
         ee_name:               RTD81
-        slot:                  [ 11, 12, 21, 22, 32, 42, 52 ]
+        slot:                  [ 12, 22, 32, 42, 52 ]
         has_unipi_fw:          true
         commercial_id:         IM504
+        #speed: 6000000
 
     ID_DiS8_1:
         has_unipi_fw:          true
