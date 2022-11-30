@@ -19,7 +19,7 @@
 				compatible = "unipi,unipi-mfd", "iogroup";
 				fw_variant = <0x2c10>;
 				fw_name = "IC-Ai2Ao1-1";
-				board_name = "IC-Ai2Ao1-1";
+				board_name = "IM506";
 				//cycle_counter = <1022>;
 				master_watchdog_enable = <4>;
 

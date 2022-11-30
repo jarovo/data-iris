@@ -5,7 +5,7 @@
 
 / {
 	fragment@1 {
-		{{ m.unipispi(slot, spichip, spiaddress) }}
+		{{ m.unipispi(slot, spichip, spiaddress, 6000000) }}
 	};
 
 	fragment@2 {
@@ -17,18 +17,19 @@
 			iogroup{{slot}} {
 				reg = <{{slot}}>;
 				compatible = "unipi,unipi-mfd", "iogroup";
-				fw_variant = <0x2510>;
-				fw_name = "ID-AiUC8-1";
-				board_name = "IM503";
-				cycle_counter = <1022>;
-				master_watchdog_enable = <16>;
-
+				fw_variant = <0x2710>;
+				fw_name = "ID-AiRTD8-1";
+				board_name = "IM504";
+				cycle_counter = <1020>;
+				master_watchdog_enable = <25>;
+				/*
 				ai_chip {
 					compatible = "unipi,ai";
 					io-count = <8>;
 					io-value-reg = <0>;
 					io-mode-reg = <1010>;
 				};
+				*/
 			};
 		};
 	};
