@@ -17,9 +17,9 @@
 			iogroup{{slot}} {
 				reg = <{{slot}}>;
 				compatible = "unipi,unipi-mfd", "iogroup";
-				fw_variant = <0x1b10>;
-				fw_name = "ID-8Ai";
-				board_name = "ID-8Ai";
+				fw_variant = <0x2510>;
+				fw_name = "ID-AiUC8-1";
+				board_name = "IM503";
 				cycle_counter = <1022>;
 				master_watchdog_enable = <16>;
 
