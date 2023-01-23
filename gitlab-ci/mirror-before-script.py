@@ -1,2 +1,2 @@
-cp gitlab-ci/project_specific_scripts/publish-config.sh /ci-scripts
+cp gitlab-ci/publish-config.sh /ci-scripts
 
