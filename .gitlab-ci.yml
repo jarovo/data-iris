@@ -6,4 +6,4 @@ variables:
     build_for_product: "iris"
     build_for_distribution: "stable newstable"
     publish_url: "https://UniPiTechnology:${GITHUB_ACCESS_TOKEN}@github.com/UniPiTechnology/data-iris.git"
-    publish_to_remote: "yes"
+    publish_to_remote: "true"
