@@ -4,6 +4,6 @@ include:
 variables:
     package_name: "unipi-os-configurator-data"
     build_for_product: "iris"
-    build_for_distribution: "stable newstable"
+    build_for_distribution: "stable"
     publish_url: "https://UniPiTechnology:${GITHUB_ACCESS_TOKEN}@github.com/UniPiTechnology/data-iris.git"
     publish_to_remote: "true"
